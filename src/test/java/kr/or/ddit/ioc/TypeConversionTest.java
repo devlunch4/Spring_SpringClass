@@ -24,8 +24,8 @@ public class TypeConversionTest {
 	public void userTest() {
 		// String age = 5;
 		// int age = 5;
-		// xml ¿¡¼­´Â °ª¿¡ ´ëÇÑ ÆÄÀÏ/µ¥ÀÌÅÍ°ª Á¤º¸°¡ ¾ø´Ù.
-		// ÇÏÁö¸¸ Å¬·¡½º Á¤º¸¿Í ÇØ´ç ÇÊµåÀÇ Á¤º¸¸¦ ¾Ë¼öÀÖµû.
+		// xml ì—ì„œëŠ” ê°’ì— ëŒ€í•œ íŒŒì¼/ë°ì´í„°ê°’ ì •ë³´ê°€ ì—†ë‹¤.
+		// í•˜ì§€ë§Œ í´ë˜ìŠ¤ ì •ë³´ì™€ í•´ë‹¹ í•„ë“œì˜ ì •ë³´ë¥¼ ì•Œìˆ˜ìˆë”°.
 		logger.debug("user.getReg_dt() : {}", user.getReg_dt());
 		logger.debug("user.getReg_dt() : {}", user.getHire_dt());
 		logger.debug("user.getPrice() : {}", user.getPrice());

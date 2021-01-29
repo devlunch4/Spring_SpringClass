@@ -3,6 +3,6 @@ package kr.or.ddit.user.repository;
 import kr.or.ddit.user.model.UserVo;
 
 public interface UserDao {
-	// »ç¿ëÀÚ ¾ÆÀÌµğ·Î »ç¿ëÀÚ Á¶È¸
+	// ì‚¬ìš©ì ì•„ì´ë””ë¡œ ì‚¬ìš©ì ì¡°íšŒ
 	UserVo getUser(String userid);
 }

@@ -19,22 +19,21 @@ public class HelloController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	//localhost/hello/view ==> localhost/view
+	// localhost/hello/view ==> localhost/view
 	// localhost/hello/view.do
 	@RequestMapping("view")
 	public String view(Model model) {
-		logger.debug("ÁøÀÔ HelloController view() : {}", userService.getUser("brown"));
+		logger.debug("ì§„ì… HelloController view() : {}", userService.getUser("brown"));
 
 		// request.setAttribute("userVo", userService.getUser("brown"));
 		model.addAttribute("userVo", userService.getUser("brown"));
 		return "hello";
 	}
-	
-	
-	//±âÁ¸ ¼­ºí¸´ Àû¿ë
+
+	// ê¸°ì¡´ ì„œë¸”ë¦¿ ì ìš©
 //	@RequestMapping("view")
 //	public String view(HttpServletRequest request) {
-//		logger.debug("ÁøÀÔ HelloController view() : {}", userService.getUser("brown"));
+//		logger.debug("ì§„ì… HelloController view() : {}", userService.getUser("brown"));
 //
 //		request.setAttribute("userVo", userService.getUser("brown"));
 //		//model.addAttribute("userVo", userService.getUser("brown"));

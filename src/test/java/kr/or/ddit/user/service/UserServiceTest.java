@@ -21,16 +21,16 @@ public class UserServiceTest {
 	@Test
 	public void getUserTest() {
 		/*** Given ***/
-		// Ã£À» ¾ÆÀÌµğ °ª
+		// ì°¾ì„ ì•„ì´ë”” ê°’
 		String userid = "brown";
 
 		/*** When ***/
-		// Å×½ºÆ® ÇÏ·Á´Â ¸Ş¼Òµå
+		// í…ŒìŠ¤íŠ¸ í•˜ë ¤ëŠ” ë©”ì†Œë“œ
 		UserVo userVo = userService.getUser(userid);
 
 		/*** Then ***/
-		// Å×½ºÆ® °á°ú ºñ±³
-		assertEquals("ºê¶ó¿î", userVo.getUsernm());
+		// í…ŒìŠ¤íŠ¸ ê²°ê³¼ ë¹„êµ
+		assertEquals("ë¸Œë¼ìš´", userVo.getUsernm());
 	}
 
 }

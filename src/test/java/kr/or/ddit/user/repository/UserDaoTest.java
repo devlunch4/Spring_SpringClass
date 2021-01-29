@@ -11,31 +11,31 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.user.model.UserVo;
 
-// mainMethod-/eclipse /maven ¸ğµâÀÌ ³»ÀåµÇ¾îÀÖ´Ù.
+// mainMethod-/eclipse /maven ëª¨ë“ˆì´ ë‚´ì¥ë˜ì–´ìˆë‹¤.
 
-// spring È¯°æ¿¡¼­ junit ÄÚµå ½ÇÇà ==> junit ÄÚµåµµ ½ºÇÁ¸µ ºóÀ¸·Î µî·Ï
+// spring í™˜ê²½ì—ì„œ junit ì½”ë“œ ì‹¤í–‰ ==> junit ì½”ë“œë„ ìŠ¤í”„ë§ ë¹ˆìœ¼ë¡œ ë“±ë¡
 @RunWith(SpringJUnit4ClassRunner.class)
-//¼³Á¤ Á¤º¸¸¦ ³Ñ°ÜÁÖ±â
+//ì„¤ì • ì •ë³´ë¥¼ ë„˜ê²¨ì£¼ê¸°
 @ContextConfiguration("classpath:/kr/or/ddit/ioc/ioc.xml")
 public class UserDaoTest {
 
-	// test ½Ã °¡Á®¿Ã °´Ã¼
+	// test ì‹œ ê°€ì ¸ì˜¬ ê°ì²´
 	@Resource(name = "userDao")
 	private UserDao userDao;
 
 	@Test
 	public void getUserTest() {
 		/*** Given ***/
-		// Ã£À» ¾ÆÀÌµğ °ª
+		// ì°¾ì„ ì•„ì´ë”” ê°’
 		String userid = "brown";
 
 		/*** When ***/
-		// Å×½ºÆ® ÇÏ·Á´Â ¸Ş¼Òµå
+		// í…ŒìŠ¤íŠ¸ í•˜ë ¤ëŠ” ë©”ì†Œë“œ
 		UserVo userVo = userDao.getUser(userid);
 
 		/*** Then ***/
-		// Å×½ºÆ® °á°ú ºñ±³
-		assertEquals("ºê¶ó¿î", userVo.getUsernm());
+		// í…ŒìŠ¤íŠ¸ ê²°ê³¼ ë¹„êµ
+		assertEquals("ë¸Œë¼ìš´", userVo.getUsernm());
 	}
 
 }

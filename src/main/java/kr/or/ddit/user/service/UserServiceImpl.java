@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(userid);
 	}
 
-	// DI getter setter »ç¿ë
+	// DI getter setter ì‚¬ìš©
 	public UserDao getUserDao() {
 		return userDao;
 	}

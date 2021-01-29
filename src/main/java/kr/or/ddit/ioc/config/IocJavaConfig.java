@@ -16,8 +16,8 @@ import kr.or.ddit.user.repository.UserDao;
 import kr.or.ddit.user.repository.UserDaoImpl;
 import kr.or.ddit.user.service.UserServiceImpl;
 
-//½ºÇÁ¸µ ÇÁ·¹ÀÓ¿öÅ©¿¡ ÇØ´ç ÀÚ¹ÙÆÄÀÏÀÌ
-//½ºÇÁ¸µ ¼³Á¤ ÆÄÀÏÀÓÀ» ¾Ë·ÁÁØ´Ù
+//ìŠ¤í”„ë§ í”„ë ˆì„ì›Œí¬ì— í•´ë‹¹ ìë°”íŒŒì¼ì´
+//ìŠ¤í”„ë§ ì„¤ì • íŒŒì¼ì„ì„ ì•Œë ¤ì¤€ë‹¤
 
 @PropertySource(value = { "classpath:/kr/or/ddit/config/db/dbinfo.properties" })
 @Configuration
@@ -32,10 +32,10 @@ public class IocJavaConfig {
 	@Value("${jdbc.password}")
 	private String password;
 
-	// ¸Ş¼Òµå : ½ºÇÁ¸µ ºóÀ¸·Î ¸¸µé °´Ã¼¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå¸¦ »ı¼º
-	// ---- ¸Ş¼Òµå¿¡ @Bean ¾î³ëÅ×ÀÌ¼ÇÀ» Àû¿ë
-	// ---- @Bean ¾î³ëÅ×ÀÌ¼Ç¿¡ º°´Ù¸¥ ¿É¼ÇÀ» Àû¿ëÇÏÁö ¾ÊÀ¸¸é »ı¼ºµÈ ½ºÇÁ¸µ ºóÀÇ ÀÌ¸§Àº
-	// ---- ¸Ş¼Òµå ÀÌ¸§À¸·Î Àû¿ëµÈ´Ù. (@Bean ¾î³ëÅ×ÀÌ¼ÇÀÇ name ¼Ó¼ºÀ» ÅëÇØ ½ºÇÁ¸µ ºó ÀÌ¸§ ¼³Á¤ °¡´É)
+	// ë©”ì†Œë“œ : ìŠ¤í”„ë§ ë¹ˆìœ¼ë¡œ ë§Œë“¤ ê°ì²´ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œë¥¼ ìƒì„±
+	// ---- ë©”ì†Œë“œì— @Bean ì–´ë…¸í…Œì´ì…˜ì„ ì ìš©
+	// ---- @Bean ì–´ë…¸í…Œì´ì…˜ì— ë³„ë‹¤ë¥¸ ì˜µì…˜ì„ ì ìš©í•˜ì§€ ì•Šìœ¼ë©´ ìƒì„±ëœ ìŠ¤í”„ë§ ë¹ˆì˜ ì´ë¦„ì€
+	// ---- ë©”ì†Œë“œ ì´ë¦„ìœ¼ë¡œ ì ìš©ëœë‹¤. (@Bean ì–´ë…¸í…Œì´ì…˜ì˜ name ì†ì„±ì„ í†µí•´ ìŠ¤í”„ë§ ë¹ˆ ì´ë¦„ ì„¤ì • ê°€ëŠ¥)
 
 	// <bean id="userDao" class="kr.or.ddit.user.repository.UserDaoImpl">
 	@Bean
@@ -53,15 +53,15 @@ public class IocJavaConfig {
 	@Bean
 	public UserServiceImpl userService() {
 		UserServiceImpl userService = new UserServiceImpl();
-		// userService.setUserDao(new UserDaoImpl()); ´Â ¾Æ·¡ ÄÚµåÀÇ ºó »ç¿ë°ú °°´Ù
-		// Áï À§¿¡ @bean ¼±¾ğÇÑ°É °¡Á®¿Â´Ù.
+		// userService.setUserDao(new UserDaoImpl()); ëŠ” ì•„ë˜ ì½”ë“œì˜ ë¹ˆ ì‚¬ìš©ê³¼ ê°™ë‹¤
+		// ì¦‰ ìœ„ì— @bean ì„ ì–¸í•œê±¸ ê°€ì ¸ì˜¨ë‹¤.
 		userService.setUserDao(userDao());
 		return userService;
 	}
 
 	//////
 
-	// ioc.xml part »ı¼ºÀÚ ÁÖÀÔ
+	// ioc.xml part ìƒì„±ì ì£¼ì…
 	// <bean id="userServiceCons" class="kr.or.ddit.user.service.UserServiceImpl">
 	// <constructor-arg ref="userDao"></constructor-arg></bean>
 	@Bean
@@ -71,7 +71,7 @@ public class IocJavaConfig {
 
 	////////
 
-//	ioc.xml part prototype : ÇØ´ç ºóÀ» dl,di ÇÒ¶§ ¸¶´Ù ¸Å¹ø »õ·Ó°Ô ¸¸µç °´Ã¼¸¦ ¹İÈ¯
+//	ioc.xml part prototype : í•´ë‹¹ ë¹ˆì„ dl,di í• ë•Œ ë§ˆë‹¤ ë§¤ë²ˆ ìƒˆë¡­ê²Œ ë§Œë“  ê°ì²´ë¥¼ ë°˜í™˜
 //	<bean id="userServicePrototype"  class="kr.or.ddit.user.service.UserServiceImpl" 
 	// scope="prototype"> <property name="userDao" ref="userDao"></property>
 //	</bean>
@@ -103,7 +103,7 @@ public class IocJavaConfig {
 		list.add("brown");
 		return collectionBean;
 	}
-//¸ÇÀ§
+//ë§¨ìœ„
 //	<context:property-placeholder
 //	location="classpath:/kr/or/ddit/config/db/dbinfo.properties" />
 

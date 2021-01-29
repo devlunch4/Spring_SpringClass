@@ -3,7 +3,7 @@ package kr.or.ddit.ioc.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-//@ComponentScan(basePackageClasses = {Å¬·¡½º¸í.class}) ÀÌ°æ¿ì´Â ÇØ´ç Å¬·¡½º°¡ ¼ÓÇÑ ÆĞÅ°Áö·Î ½ºÄµÇÑ´Ù.
+//@ComponentScan(basePackageClasses = {í´ë˜ìŠ¤ëª….class}) ì´ê²½ìš°ëŠ” í•´ë‹¹ í´ë˜ìŠ¤ê°€ ì†í•œ íŒ¨í‚¤ì§€ë¡œ ìŠ¤ìº”í•œë‹¤.
 @ComponentScan(basePackages = {"kr.or.ddit"})
 @Configuration
 public class ComponentScanJavaConfig {

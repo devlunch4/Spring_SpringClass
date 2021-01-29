@@ -13,7 +13,7 @@ public class CustomDateConverter implements Converter<String, Date> {
 	// source : 2021-01-11, yyyy-mm-dd
 	@Override
 	public Date convert(String source) {
-		// ¹®ÀÚ¸¦ ³¯Â¥·Î ¸¸µå´Â ¹æ¹ı
+		// ë¬¸ìë¥¼ ë‚ ì§œë¡œ ë§Œë“œëŠ” ë°©ë²•
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		Date date = null;
 		try {
@@ -24,7 +24,7 @@ public class CustomDateConverter implements Converter<String, Date> {
 		return date;
 	}
 
-	// dateFormat setter ¼³Á¤
+	// dateFormat setter ì„¤ì •
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;
 	}

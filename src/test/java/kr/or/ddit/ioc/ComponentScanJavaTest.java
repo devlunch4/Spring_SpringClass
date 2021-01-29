@@ -27,18 +27,18 @@ public class ComponentScanJavaTest {
 	
 	@Test
 	public void userDaoImplSpringBeanTest() {
-		// @Repository ¾î³ëÆäÀÌ¼ÇÀ» Àû¿ëÇÑ userDaoImpl ½ºÇÁ¸µ ºóÀÌ Á¤»óÀûÀ¸·Î ÄÁÅ×ÀÌ³Ê¿¡ µî·ÏÀÌ µÇ¾ú´ÂÁö È®ÀÎ
+		// @Repository ì–´ë…¸í˜ì´ì…˜ì„ ì ìš©í•œ userDaoImpl ìŠ¤í”„ë§ ë¹ˆì´ ì •ìƒì ìœ¼ë¡œ ì»¨í…Œì´ë„ˆì— ë“±ë¡ì´ ë˜ì—ˆëŠ”ì§€ í™•ì¸
 		assertNotNull(userDao);
 		UserVo userVo = userDao.getUser("brown");
-		assertEquals("ºê¶ó¿î", userVo.getUsernm());
+		assertEquals("ë¸Œë¼ìš´", userVo.getUsernm());
 	}
 
 	@Test
 	public void userServiceImplSpringBeanTest() {
-		// @Repository ¾î³ëÆäÀÌ¼ÇÀ» Àû¿ëÇÑ userDaoImpl ½ºÇÁ¸µ ºóÀÌ Á¤»óÀûÀ¸·Î ÄÁÅ×ÀÌ³Ê¿¡ µî·ÏÀÌ µÇ¾ú´ÂÁö È®ÀÎ
+		// @Repository ì–´ë…¸í˜ì´ì…˜ì„ ì ìš©í•œ userDaoImpl ìŠ¤í”„ë§ ë¹ˆì´ ì •ìƒì ìœ¼ë¡œ ì»¨í…Œì´ë„ˆì— ë“±ë¡ì´ ë˜ì—ˆëŠ”ì§€ í™•ì¸
 		assertNotNull(userService);
 		UserVo userVo = userService.getUser("brown");
-		assertEquals("ºê¶ó¿î", userVo.getUsernm());
+		assertEquals("ë¸Œë¼ìš´", userVo.getUsernm());
 	}
 
 }

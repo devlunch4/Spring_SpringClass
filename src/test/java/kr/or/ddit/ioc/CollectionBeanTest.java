@@ -19,12 +19,12 @@ public class CollectionBeanTest {
 
 	@Test
 	public void collectionBeanTest() {
-		// collectionBean ½ºÇÁ¸µºóÀÌ Á¤»óÀûÀ¸·Î »ı¼º µÇ¾ú´ÂÁöÈ®ÀÎ
+		// collectionBean ìŠ¤í”„ë§ë¹ˆì´ ì •ìƒì ìœ¼ë¡œ ìƒì„± ë˜ì—ˆëŠ”ì§€í™•ì¸
 		assertNotNull(collectionBean);
 		assertNotNull(collectionBean.getList());
 		assertEquals(3, collectionBean.getList().size());
 		assertEquals("sally", collectionBean.getList().get(1));
-		assertEquals("ºê¶ó¿î", collectionBean.getMap().get("usernm"));
+		assertEquals("ë¸Œë¼ìš´", collectionBean.getMap().get("usernm"));
 	}
 
 }

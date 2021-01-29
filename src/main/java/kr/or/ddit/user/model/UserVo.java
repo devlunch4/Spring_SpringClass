@@ -36,11 +36,11 @@ public class UserVo {
 		this.price = price;
 	}
 
-	// ±âº» »ı¼ºÀÚ (»ç¿ëÇÒ »ı¼ºÀÚ È°¿ë½Ã ¼±¾ğ ÇÊ¼ö!)
+	// ê¸°ë³¸ ìƒì„±ì (ì‚¬ìš©í•  ìƒì„±ì í™œìš©ì‹œ ì„ ì–¸ í•„ìˆ˜!)
 	public UserVo() {
 	}
 
-	// »ç¿ëÇÒ »ı¼ºÀÚ
+	// ì‚¬ìš©í•  ìƒì„±ì
 	public UserVo(String userid, String usernm) {
 		setUserid(userid);
 		setUsernm(usernm);

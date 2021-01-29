@@ -13,27 +13,27 @@ public class IocMain {
 	private static final Logger logger = LoggerFactory.getLogger(IocMain.class);
 
 	public static void main(String[] args) {
-		// 1.½ºÇÁ¸µ ¼³Á¤ ÆÄÀÏÀ» ÀÌ¿ëÇÏ¿© ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¸¦ »ı¼º(kr/or/ddit/ioc/ioc.xml)
-		// --½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê Å¸ÀÔ : ApplicationContext
-		// 2. ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¿¡°Ô ¸¸µé¾îÁø ½ºÇÁ¸µ ºó(°´Ã¼)¸¦ ¿äÃ»
-		// DL(Dependency Lookup) : ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¿¡°Ô ½ºÇÁ¸µ ºóÀ» ¿äÃ»ÇÏ´Â °úÁ¤
-		// 3. ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¿¡¼­ °ü¸®µÇ°í ÀÖ´Â ºóÀÌ Àß ¸¸µé¾î Á³´ÂÁö È®ÀÎ
+		// 1.ìŠ¤í”„ë§ ì„¤ì • íŒŒì¼ì„ ì´ìš©í•˜ì—¬ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¥¼ ìƒì„±(kr/or/ddit/ioc/ioc.xml)
+		// --ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ íƒ€ì… : ApplicationContext
+		// 2. ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆì—ê²Œ ë§Œë“¤ì–´ì§„ ìŠ¤í”„ë§ ë¹ˆ(ê°ì²´)ë¥¼ ìš”ì²­
+		// DL(Dependency Lookup) : ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆì—ê²Œ ìŠ¤í”„ë§ ë¹ˆì„ ìš”ì²­í•˜ëŠ” ê³¼ì •
+		// 3. ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆì—ì„œ ê´€ë¦¬ë˜ê³  ìˆëŠ” ë¹ˆì´ ì˜ ë§Œë“¤ì–´ ì¡ŒëŠ”ì§€ í™•ì¸
 
 		// d:\\upload file :
 		// class classpath:
 
-		// 1¹ø¿¡ ÇØ´ç
+		// 1ë²ˆì— í•´ë‹¹
 		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/kr/or/ddit/ioc/ioc.xml");
 
-		// 2¹ø¿¡ ÇØ´ç
+		// 2ë²ˆì— í•´ë‹¹
 		// UserDao userDao = new UserDaoImpl();
 		UserDao userDao = (UserDao) context.getBean("userDao");
 
 		UserVo userVo = userDao.getUser("brown");
 		logger.debug("userVo : {}", userVo);
 
-		// ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ userService ½ºÇÁ¸µ ºóÀ» DLÀ» ÅëÇØ ¾ò¾î¿À°í
-		// getUser ¸Ş¼Òµå¸¦ call, ¹İÈ¯µÈ °ª (userVo)À» logger¸¦ ÅëÇØ Ãâ·Â
+		// ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° userService ìŠ¤í”„ë§ ë¹ˆì„ DLì„ í†µí•´ ì–»ì–´ì˜¤ê³ 
+		// getUser ë©”ì†Œë“œë¥¼ call, ë°˜í™˜ëœ ê°’ (userVo)ì„ loggerë¥¼ í†µí•´ ì¶œë ¥
 		UserService userService = (UserService) context.getBean("userService");
 		UserVo userVo2 = userService.getUser("brown");
 		logger.debug("userVo2 : {}", userVo2);

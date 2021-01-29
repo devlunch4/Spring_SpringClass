@@ -37,33 +37,33 @@ public class IocTest {
 
 	@Test
 	public void userServiceConsTest() {
-		// userServiceCons ½ºÇÁ¸µ ºóÀÌ »ı¼ºµÇ¾ú´ÂÁö È®ÀÎÇÏ´Â Å×½ºÆ®
+		// userServiceCons ìŠ¤í”„ë§ ë¹ˆì´ ìƒì„±ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í…ŒìŠ¤íŠ¸
 		assertNotNull(userServiceCons);
 	}
 
 	@Test
 	public void beanScopeTest() {
-		// µğÀÚÀÎ ÆĞÅÏ °³³äÀ¸·Î º¸¸é µÎ°³ÀÇ °´Ã¼´Â ÇÑ Å¬·¡½º·Î ºÎÅÍ ³ª¿ÔÀ¸¹Ç·Î
-		//ÇÏÁö¸¸ ½ºÇÁ¸µÀÇ singleton°³³äÀº bean ¿¤·¹¸àÆ®¸¦ ±âÁØÀ» ¤ÇÇÏ³ªÀÇ °´Ã¼°¡ »ı¼ºµÈ´Ù.
+		// ë””ìì¸ íŒ¨í„´ ê°œë…ìœ¼ë¡œ ë³´ë©´ ë‘ê°œì˜ ê°ì²´ëŠ” í•œ í´ë˜ìŠ¤ë¡œ ë¶€í„° ë‚˜ì™”ìœ¼ë¯€ë¡œ
+		//í•˜ì§€ë§Œ ìŠ¤í”„ë§ì˜ singletonê°œë…ì€ bean ì—˜ë ˆë©˜íŠ¸ë¥¼ ê¸°ì¤€ì„ ã…—í•˜ë‚˜ì˜ ê°ì²´ê°€ ìƒì„±ëœë‹¤.
 		assertNotEquals(userService, userServiceCons);
 
 	}
 
 	@Test
 	public void beanScopeTest2() {
-		// µ¿ÀÏÇÑ ½ºÇÁ¸µ ºóÀ» ÁÖÀÔ¹Ş¾ÒÀ¸¹Ç·Î userService, userService2 Àº °°Àº °´Ã¼ÀÌ´Ù.
+		// ë™ì¼í•œ ìŠ¤í”„ë§ ë¹ˆì„ ì£¼ì…ë°›ì•˜ìœ¼ë¯€ë¡œ userService, userService2 ì€ ê°™ì€ ê°ì²´ì´ë‹¤.
 		assertEquals(userService, userService2);
 	}
 
 	@Test
 	public void beanScopePrototypeTest() {
-		// µ¿ÀÏÇÑ userServicePrototype ºóÀ» ÁÖÀÔ ¹Ş¾Ò´Âµ¥ (scope : Prototype) ¿äÃ»ÇÒ¶§¸¶´Ù »õ·Î¿î °ÍÀ» »ı¼º
+		// ë™ì¼í•œ userServicePrototype ë¹ˆì„ ì£¼ì… ë°›ì•˜ëŠ”ë° (scope : Prototype) ìš”ì²­í• ë•Œë§ˆë‹¤ ìƒˆë¡œìš´ ê²ƒì„ ìƒì„±
 		assertNotEquals(userServicePrototype, userServicePrototype2);
 	}
 
 	@Test
 	public void propertyPlaceholderTest() {
-		// dbinfo.properties ÀÇ Á¤º¸ÀÇ ÁÖÀÔÀÌ Àß µÇ¾ú´ÂÁö
+		// dbinfo.properties ì˜ ì •ë³´ì˜ ì£¼ì…ì´ ì˜ ë˜ì—ˆëŠ”ì§€
 		assertNotNull(dbConfig);
 
 		assertEquals("oracle.jdbc.driver.OracleDriver", dbConfig.getDriverClassName());
