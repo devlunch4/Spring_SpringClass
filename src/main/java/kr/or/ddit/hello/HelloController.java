@@ -1,7 +1,6 @@
 package kr.or.ddit.hello;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +22,14 @@ public class HelloController {
 	// localhost/hello/view.do
 	@RequestMapping("view")
 	public String view(Model model) {
-		logger.debug("진입 HelloController view() : {}", userService.getUser("brown"));
+		// logger.debug("진입 HelloController view() : {}", userService.getUser("brown"));
 
 		// request.setAttribute("userVo", userService.getUser("brown"));
 		model.addAttribute("userVo", userService.getUser("brown"));
 		return "hello";
 	}
 
-	// 기존 서블릿 적용
+	// 기존 서블릿 적용---이제는 미사용
 //	@RequestMapping("view")
 //	public String view(HttpServletRequest request) {
 //		logger.debug("진입 HelloController view() : {}", userService.getUser("brown"));

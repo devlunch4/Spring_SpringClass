@@ -86,5 +86,7 @@ servlet 생성하는 주체가 servlet-container
 
 스프링 프레임워크에서 처리될 요청은 Dispatcher Servlet이 받으므로
 Dispatcher Servlet을 대신하여 테스트 할수 있는 객체를 제공받아 형식으로 컨트롤러 테스트를 진행
-DispatcherServlet ==> MockMvc
+DispatcherServlet ==> MockMvc 생성을 위해서
+						WebApplicationContext 객체가 필요
+						==> 스프링 프레임 워크에서 
  		

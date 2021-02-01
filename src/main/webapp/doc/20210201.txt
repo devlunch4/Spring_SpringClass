@@ -1,0 +1,22 @@
+20210201
+
+앞으로 테스트 코드 작성 방법
+controller ==>	1. webTestConfig 클래스를 상속 받는 junit 클래스를 생성
+				2. mockMvc 객체를 이용하여 테스트 코드 작성
+				
+service,repository ==> 1. MoelTestConfig 클래스를 상속 받는 junit 클래스를 생성
+						2. 테스트 대상 스프링 빈을 주입 받아 테스트 코드 작성
+
+
+
+실습----
+login 기능 마이그레이션
+
+
+jsp 프로젝트에서 localhost/login.jsp ==> model1 ==> model2
+1.로그인 화면 요청
+		.jsp 위치 (webapp/.... ==> webapp/WEB-INF/views)
+				commons/header.jsp, left.jsp. common_lib.jsp)
+				webapp/login.jsp ==> webapp/WEB-INF/views/login.jsp
+				webapp/common/*.jsp ==> webapp/WEB-INF/views/common/*.jsp
+>>즉 파일 이동
