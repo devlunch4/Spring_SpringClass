@@ -48,7 +48,10 @@
 </head>
 <body>
 	<div class="container">
-		
+		UNT_CD : ${param.UNT_CD} /
+		<%=request.getParameter("UNT_CD")%>
+		<br> cp: ${cp } /
+		<%=application.getAttribute("cp")%>
 
 		<form class="form-signin" id="frm" action="${cp }/loginController"
 			method="post">

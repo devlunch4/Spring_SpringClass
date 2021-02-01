@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 
 		// UserVo user = new UserVo("brown", "브라운");
 
-		return new UserVo("brown", "브라운");
+		return new UserVo("brown", "브라운", "brownPass");
 	}
 
 }
