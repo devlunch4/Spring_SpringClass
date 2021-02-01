@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.PageVo;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDao")
 	private UserDao userDao;
+	
 
 	public UserServiceImpl() {
 	}

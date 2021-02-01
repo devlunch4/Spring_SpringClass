@@ -5,7 +5,7 @@
 	<li class="active"><a
 		href="${cp }/main.jsp">Main <span
 			class="sr-only">(current)</span></a></li>
-	<li class="active"><a href="${cp } /allUser">전체사용자</a></li>
+	<li class="active"><a href="${cp } /user/allUser">전체사용자</a></li>
 	<li class="active"><a
 		href="${cp }/pagingUser">전체사용자페이징리스트</a></li>
 
@@ -13,11 +13,7 @@
 pagingUser.jsp페엇 페이지에 해당하는 사용자 5명만 출력 되도록 개발
 kr.or.ddit.user.controller.PaginUser.java 
  --%>
-	<li><hr></li>
-	<!--  -->
-	<li class="active"><a href="${cp }/allEmp">EMP</a></li>
-	<li class="active"><a
-		href="${cp }/pagingEmp">EMP Paging List</a></li>
+
 	<%--
 	/allUser 요청을 처리할 servlet(controller)
 	 kr.or.ddit.user.controller.AllUser
