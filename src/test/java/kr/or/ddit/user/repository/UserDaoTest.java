@@ -93,8 +93,8 @@ public class UserDaoTest extends ModelTestConfig {
 	@Test
 	public void modifyUserTest() {
 		/*** Given ***/
-		UserVo userVo = new UserVo("1234", "테스터", "testpass", new Date(), "테스터별명", "주소11", "주소22", "3",
-				"testfilename", "testrealfilename");
+		UserVo userVo = new UserVo("1234", "테스터", "testpass", new Date(), "테스터별명", "주소11", "주소22", "3", "testfilename",
+				"testrealfilename");
 		/*** When ***/
 		int updateCunt = userDao.modifyUser(userVo);
 

@@ -14,7 +14,7 @@ import kr.or.ddit.test.config.ModelTestConfig;
 
 @ContextConfiguration("classpath:/kr/or/ddit/ioc/ioc.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class CollectionBeanTest extends ModelTestConfig{
+public class CollectionBeanTest extends ModelTestConfig {
 
 	@Resource(name = "collectionBean")
 	private CollectionBean collectionBean;

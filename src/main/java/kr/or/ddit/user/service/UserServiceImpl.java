@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDao")
 	private UserDao userDao;
-	
 
 	public UserServiceImpl() {
 	}

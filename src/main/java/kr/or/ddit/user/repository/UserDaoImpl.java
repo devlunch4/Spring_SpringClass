@@ -24,7 +24,6 @@ public class UserDaoImpl implements UserDao {
 	@Resource(name = "sqlSessionTemplate")
 	private SqlSessionTemplate tempplate;
 
-	
 	// 사용자 아이디로 사용자 조회
 	@Override
 	public UserVo selectUser(String userid) {

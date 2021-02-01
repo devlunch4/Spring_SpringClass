@@ -24,7 +24,6 @@ public class ComponentScanJavaTest {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	
 	@Test
 	public void userDaoImplSpringBeanTest() {
 		// @Repository 어노페이션을 적용한 userDaoImpl 스프링 빈이 정상적으로 컨테이너에 등록이 되었는지 확인

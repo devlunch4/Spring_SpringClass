@@ -20,7 +20,7 @@ public class LoginController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@RequestMapping(path = "view", method = {RequestMethod.GET})
+	@RequestMapping(path = "view", method = { RequestMethod.GET })
 	public String view() {
 		logger.debug("iNN login controller >> view");
 		return "login";
@@ -37,7 +37,7 @@ public class LoginController {
 	}
 
 	// post만 처리하도 설정
-	@RequestMapping(path = "process", method = {RequestMethod.POST})
+	@RequestMapping(path = "process", method = { RequestMethod.POST })
 	public String process(UserVo userVo, HttpSession session) {
 		logger.debug("userVo : {}", userVo);
 

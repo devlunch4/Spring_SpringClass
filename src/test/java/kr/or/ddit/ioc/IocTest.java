@@ -16,7 +16,7 @@ import kr.or.ddit.user.service.UserService;
 
 @ContextConfiguration("classpath:/kr/or/ddit/ioc/ioc.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class IocTest  extends ModelTestConfig{
+public class IocTest extends ModelTestConfig {
 
 	@Resource(name = "userService")
 	private UserService userService;
@@ -45,7 +45,7 @@ public class IocTest  extends ModelTestConfig{
 	@Test
 	public void beanScopeTest() {
 		// 디자인 패턴 개념으로 보면 두개의 객체는 한 클래스로 부터 나왔으므로
-		//하지만 스프링의 singleton개념은 bean 엘레멘트를 기준을 ㅗ하나의 객체가 생성된다.
+		// 하지만 스프링의 singleton개념은 bean 엘레멘트를 기준을 ㅗ하나의 객체가 생성된다.
 		assertNotEquals(userService, userServiceCons);
 
 	}

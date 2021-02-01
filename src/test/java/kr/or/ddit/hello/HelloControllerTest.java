@@ -55,14 +55,15 @@ public class HelloControllerTest extends WebTestConfig {
 		// view() >> the selected view name
 		// model().attributeExists 속성
 		// buildup pattern 으로 한줄로 표현 가능.
-		MvcResult mvcResult = mockMvc.perform(get("/hello/view")).andExpect(status().isOk()).andExpect(view().name("hello"))
-				.andExpect(model().attributeExists("userVo")).andDo(print()).andReturn();
+		MvcResult mvcResult = mockMvc.perform(get("/hello/view")).andExpect(status().isOk())
+				.andExpect(view().name("hello")).andExpect(model().attributeExists("userVo")).andDo(print())
+				.andReturn();
 		// 기존 테스트와 다른 것은 준비과정과 한줄로 표현, 기대값의 예상 표현이 다르다.
-		
+
 		ModelAndView mav = mvcResult.getModelAndView();
-		//assertEquals("기대값", "실제값");
+		// assertEquals("기대값", "실제값");
 		assertEquals("hello", mav.getViewName());
-		UserVo userVo =  (UserVo) mav.getModel().get("userVo");
+		UserVo userVo = (UserVo) mav.getModel().get("userVo");
 		assertEquals("brown", userVo.getUserid());
 	}
 

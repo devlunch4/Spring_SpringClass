@@ -15,7 +15,7 @@ import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.repository.UserDao;
 import kr.or.ddit.user.service.UserService;
 
-@ContextConfiguration(classes = {ComponentScanJavaConfig.class})
+@ContextConfiguration(classes = { ComponentScanJavaConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ComponentScanTest {
 
@@ -25,7 +25,6 @@ public class ComponentScanTest {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	
 	@Test
 	public void userDaoImplSpringBeanTest() {
 		// @Repository 어노페이션을 적용한 userDaoImpl 스프링 빈이 정상적으로 컨테이너에 등록이 되었는지 확인

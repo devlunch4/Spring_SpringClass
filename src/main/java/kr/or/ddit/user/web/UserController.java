@@ -18,7 +18,6 @@ public class UserController {
 	// 필요한 스프링 빈 호출
 	@Resource(name = "userService")
 	private UserService userService;
-	
 
 	@RequestMapping("allUser")
 	public String allUser(Model model) {

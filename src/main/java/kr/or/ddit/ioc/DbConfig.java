@@ -5,19 +5,17 @@ public class DbConfig {
 	private String url;
 	private String driverClassName;
 	private String username;
-	private String password ;
+	private String password;
 
 	public DbConfig() {
 	}
 
-	public DbConfig(String url, String driverClassName, String username, String password ) {
+	public DbConfig(String url, String driverClassName, String username, String password) {
 		this.url = url;
 		this.driverClassName = driverClassName;
 		this.username = username;
-		this.password  = password ;
+		this.password = password;
 	}
-
-
 
 	public String getUrl() {
 		return url;
@@ -54,7 +52,7 @@ public class DbConfig {
 	@Override
 	public String toString() {
 		return "DbConfig [url=" + url + ", driverClassName=" + driverClassName + ", username=" + username
-				+ ", password =" + password  + "]";
+				+ ", password =" + password + "]";
 	}
 
 }

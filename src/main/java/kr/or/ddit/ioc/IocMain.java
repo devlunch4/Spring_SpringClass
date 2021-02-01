@@ -44,8 +44,6 @@ public class IocMain {
 		for (String beanName : context.getBeanDefinitionNames()) {
 			logger.debug("beanName : {}", beanName);
 		}
-		
-		
 
 	}
 }

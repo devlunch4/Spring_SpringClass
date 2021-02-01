@@ -53,8 +53,7 @@ public class UserVo {
 		setUsernm(usernm);
 		setPass(pass);
 	}
-	
-	
+
 	// 테스트용 사용할 생성자 사용되는 모든 생성자
 	public UserVo(String userid, String usernm, String pass, Date reg_dt, String alias, String addr1, String addr2,
 			String zipcode, String filename, String realfilename) {
@@ -68,7 +67,7 @@ public class UserVo {
 		this.zipcode = zipcode;
 		this.filename = filename;
 		this.realfilename = realfilename;
-		
+
 	}
 
 	public String getUserid() {

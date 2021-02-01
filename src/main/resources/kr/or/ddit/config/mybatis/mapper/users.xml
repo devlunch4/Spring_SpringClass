@@ -67,23 +67,26 @@
 		INSERT INTO users
 		(
 		userid,
-		usernm, pass, reg_dt, alias, addr1, addr2, zipcode, filename, realfilename
+		usernm, pass, reg_dt, alias, addr1, addr2, zipcode, filename,
+		realfilename
 		)
 		VALUES
 		(
 		#{userid},
 		#{usernm}, #{pass},
-		#{reg_dt}, #{alias}, #{addr1}, #{addr2},
+		#{reg_dt}, #{alias},
+		#{addr1}, #{addr2},
 		#{zipcode}, #{filename}, #{realfilename}
 		)
 	</insert>
 
 
 	<!-- 사용자 삭제 -->
-	<!-- string인 경우 value / result type 없음. 조회가 없기에-->
+	<!-- string인 경우 value / result type 없음. 조회가 없기에 -->
 	<delete id="deleteUser" parameterType="string">
 		DELETE users
-		WHERE userid = #{value}
+		WHERE userid =
+		#{value}
 	</delete>
 
 </mapper>

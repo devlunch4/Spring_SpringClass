@@ -17,9 +17,7 @@ public class LoginControllerTest extends WebTestConfig {
 
 		// localhost/login/view + enter ==> get
 		mockMvc.perform(get("/login/view")).andExpect(status().isOk()).andExpect(view().name("login"));
-
 		// perform(get("/hello/view")).andExpect(status().isOk()).andExpect(view().name("login"));
-
 	}
 
 	@Test // 로그인 성공시
@@ -35,5 +33,4 @@ public class LoginControllerTest extends WebTestConfig {
 				post("/login/process").param("userid", "brown").param("pass", "failPass").param("price", "1000"))
 				.andExpect(view().name("redirect:/login/view")).andDo(print());
 	}
-
 }
