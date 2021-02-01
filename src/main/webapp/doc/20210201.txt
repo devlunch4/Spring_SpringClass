@@ -80,10 +80,49 @@ LoginController : 로그인 요청 처리 메소드 개발
 			기존: HttpSession session= request.getSession();
 				session.setAttribute("S_USER", userVo>;
 			==>	
+			스프링 컨트롤러 메소드에 추가할수 있는 인자 타입
+			servlet api : HttpServletRequest, HttpServletResponse, HttpSeccion
+						application ==> getServletContext()
+			
 			
 		3-3 로그인 실패시
 		login.jsp로 리다이랙트
 		
 		기존 : response sendRedirect("/login.jsp");
-		==>
+		==> spring 에서는 컨트롤러 메소드가 viewName을 반환하게 되어있음
+			redirect에 대한 viewName : "redirect:" + 리다이렉트 주소
+			
+
+스프링 컨트롤러 메소드 인자
+1.servlet Api - 3개
+
+2. value object  -spring commond 객체/ form 객체 : form 전송을 통해 보내진 파라미터를 받는 객체
+					 primitive type, 개별객체(String, date)
+2.5 ErrorBindingResult: validation 검증시 에러 메시지를 저장
+						**********규칙
+						해당 value 객체 다음에 이어서 메소드 인자로 선언 해야한다.
+						public String process(UserVo userVo, binding객체) o
+						public String process(UserVo userVo, HttpSession session, binding객체) x
+						
+	
+					 
+3.model - 속성 담을때 (request, scope)
+
+4. Reader/Writer, Input/OutputStream
+	servlet에서 html 응답 생성 : writer 객체
+	파일 다운로드 응답 : OutputStream
+	사용자 요청 정보(파일 업로드) : InputStream
+	
+스프링 컨트롤러 메소드 반환 타입
+1. String : ViewName
+2. ModelAndView : 모델과 뷰 객체가 합쳐진 객체
+3. View 객체
+4. void : response, outStream을 통해 개발자가 직접 응답 생성한 경우
+		--> 파일 다운로드
 		
+스프링 컨트롤러에서 사용 가능한 어노테이션
+@Controller >>> 스프링에게 이것이 컨트롤러다 선언
+@RequestMapping("url") >>> 일종 서블리의 이름 ==> path @requestMapping(path="url")
+
+1.path
+2.HTTP 메소드 제한 
