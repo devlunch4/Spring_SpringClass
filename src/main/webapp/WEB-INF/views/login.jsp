@@ -55,7 +55,7 @@
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<label for="userid" class="sr-only">userid</label> <input type="text"
 				name="userid" id="userid" class="form-control" placeholder="사용자 계정"
-				required autofocus value="sally"> <label for="inputPassword"
+				required autofocus > <label for="inputPassword"
 				class="sr-only">Password</label> <input type="password" name="pass"
 				value="sallyPass" id="inputPassword" class="form-control"
 				placeholder="Password" required>

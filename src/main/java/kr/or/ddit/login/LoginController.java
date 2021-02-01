@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
@@ -19,7 +20,7 @@ public class LoginController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@RequestMapping("view")
+	@RequestMapping(path = "view", method = {RequestMethod.GET})
 	public String view() {
 		logger.debug("iNN login controller >> view");
 		return "login";
@@ -35,15 +36,15 @@ public class LoginController {
 		return "";
 	}
 
-	@RequestMapping("process")
+	// post만 처리하도 설정
+	@RequestMapping(path = "process", method = {RequestMethod.POST})
 	public String process(UserVo userVo, HttpSession session) {
 		logger.debug("userVo : {}", userVo);
 
 		// 아이디 가져오기
-		UserVo dbUser = userService.getUser(userVo.getUserid());
+		UserVo dbUser = userService.selectUser(userVo.getUserid());
 
-		
-		logger.debug(dbUser.getPass() +"/" + userVo.getPass());
+		logger.debug(dbUser.getPass() + "/" + userVo.getPass());
 		if (dbUser != null && userVo.getPass().equals(dbUser.getPass())) {
 			// 로그인 성공시
 			// 세션 내장객체 호출

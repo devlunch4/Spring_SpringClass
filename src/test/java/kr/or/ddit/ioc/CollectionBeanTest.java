@@ -10,9 +10,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.or.ddit.test.config.ModelTestConfig;
+
 @ContextConfiguration("classpath:/kr/or/ddit/ioc/ioc.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class CollectionBeanTest {
+public class CollectionBeanTest extends ModelTestConfig{
 
 	@Resource(name = "collectionBean")
 	private CollectionBean collectionBean;

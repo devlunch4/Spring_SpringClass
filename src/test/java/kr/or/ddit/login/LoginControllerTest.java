@@ -1,8 +1,8 @@
 package kr.or.ddit.login;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -25,13 +25,14 @@ public class LoginControllerTest extends WebTestConfig {
 	@Test // 로그인 성공시
 	public void processSuccessTest() throws Exception {
 		mockMvc.perform(
-				get("/login/process").param("userid", "brown").param("pass", "brownPass").param("price", "1000"))
+				post("/login/process").param("userid", "brown").param("pass", "brownPass").param("price", "1000"))
 				.andExpect(view().name("main")).andDo(print());
 	}
 
 	@Test // 로그인 실패시
 	public void processFailTest() throws Exception {
-		mockMvc.perform(get("/login/process").param("userid", "brown").param("pass", "failPass").param("price", "1000"))
+		mockMvc.perform(
+				post("/login/process").param("userid", "brown").param("pass", "failPass").param("price", "1000"))
 				.andExpect(view().name("redirect:/login/view")).andDo(print());
 	}
 

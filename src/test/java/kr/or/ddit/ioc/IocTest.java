@@ -11,11 +11,12 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.or.ddit.test.config.ModelTestConfig;
 import kr.or.ddit.user.service.UserService;
 
 @ContextConfiguration("classpath:/kr/or/ddit/ioc/ioc.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class IocTest {
+public class IocTest  extends ModelTestConfig{
 
 	@Resource(name = "userService")
 	private UserService userService;

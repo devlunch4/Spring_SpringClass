@@ -113,6 +113,14 @@ LoginController : 로그인 요청 처리 메소드 개발
 	파일 다운로드 응답 : OutputStream
 	사용자 요청 정보(파일 업로드) : InputStream
 	
+5. RedirectAttributes : 리다이렉트 페이지에 1회성 속성 전달.
+				request.setAttribute("msg","에러발생");
+				responce.sendRedirect("리다이렉트.jsp");
+				
+				리다이렉트.jsp에서 msg 속성 조회???
+
+
+
 스프링 컨트롤러 메소드 반환 타입
 1. String : ViewName
 2. ModelAndView : 모델과 뷰 객체가 합쳐진 객체
@@ -124,5 +132,55 @@ LoginController : 로그인 요청 처리 메소드 개발
 @Controller >>> 스프링에게 이것이 컨트롤러다 선언
 @RequestMapping("url") >>> 일종 서블리의 이름 ==> path @requestMapping(path="url")
 
-1.path
-2.HTTP 메소드 제한 
+1. path
+2. HTTP 메소드 제한 
+3. 파라미터 제한
+	특정 파라미터의 값이 정해진 값과 일치 할때만 해당 요청을 처리.
+	params ={"userid=brown"}
+	
+ajx>>
+	
+4. 요청 content-type 제한 : consumes
+		comsumes = application/json ==> 요청을 json 문자열로 보냈을때만 처리
+
+5. 응답 허용 contect-type, ACCEPT 제한: 응답으로 json 요청을 때만 처리	 
+		prodeuces="application/json"
+6. 특정 헤더 제한
+ : 
+		headers="Context-Type=text/plain";
+
+	
+SPRING- mybatis 연동
+예전
+	MyBatisUtil, getSession()
+	
+spring
+	sqlSession 객체에 해당하는 sqlSessionTemplate 객체를 dao객체에 주입받아서 사용
+	sqlSessionTemplate ==> SqlSessionFactioryBean ==> 1.설정파일(매퍼파일),2.Datasource
+	
+	
+userServiceImple,UserDao
+ . 모든 마이그레이션
+ . 모든 테스트 코드 작성
+ 
+ src/test/java 소스폴터 선택후 전체 테스트 실행
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 사용자 전체리스트 개발 URL : user/allUser
+ 1. Spring controller 생성 : kr.or.ddit.user.web.UserController
+ 2. 필요한 스프링 빈 : userService
+ 	** 조회한 사용자 리스트 정보 model 객체에 담기
+ 3. webapp/user/allUser.jsp ==> webapp/WEB-INF/views/user/allUser.jsp 
+ 
+ *.UserControllerTest , allUser 메소드 테스트
+ 
+ 
+,

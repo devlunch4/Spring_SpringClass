@@ -25,7 +25,7 @@ public class HelloController {
 		// logger.debug("진입 HelloController view() : {}", userService.getUser("brown"));
 
 		// request.setAttribute("userVo", userService.getUser("brown"));
-		model.addAttribute("userVo", userService.getUser("brown"));
+		model.addAttribute("userVo", userService.selectUser("brown"));
 		return "hello";
 	}
 
