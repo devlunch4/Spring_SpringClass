@@ -65,8 +65,7 @@ public class UserController {
 		return "user/pagingUser";
 	}
 
-	// 사용자 상세보기
-	@RequestMapping("userForm")
+	@RequestMapping("userForm") // 사용자 상세보기
 	public String userForm(Model model, String userid) {
 		logger.debug("INN UserController pagingUser() :");
 		logger.debug("클릭된 userid값 : {}", userid);
@@ -143,6 +142,7 @@ public class UserController {
 		}
 		if (deleteCnt == 1) {
 			logger.debug("사용자 {} 삭제 완료", userid);
+			model.addAttribute("userList", userService.selectAllUser());
 			return "user/allUser";
 		} else {
 			return "user/userModify";

@@ -132,10 +132,8 @@
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" id="modifyBtn" class="btn btn-default">사용자
-								수정</button>
-							<button type="button" id="deleteBtn" class="btn btn-default">사용자
-								삭제</button>
+							<button type="button" id="modifyBtn" class="btn btn-default">사용자 수정</button>
+							<button type="button" id="deleteBtn" class="btn btn-default">사용자 삭제</button>
 						</div>
 					</div>
 				</form>

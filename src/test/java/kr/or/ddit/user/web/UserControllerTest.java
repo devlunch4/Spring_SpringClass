@@ -1,5 +1,6 @@
 package kr.or.ddit.user.web;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -8,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.mock.web.MockMultipartFile;
 
 import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.test.config.WebTestConfig;
@@ -27,14 +30,14 @@ public class UserControllerTest extends WebTestConfig {
 				.andExpect(model().attributeExists("pagination")).andDo(print());
 	}
 
-	@Test
+	@Test // 페이징 처리
 	public void pageVoTest() throws Exception {
 		PageVo pageVo = new PageVo();
 		System.out.println("pageVo.getPage():" + pageVo.getPage());
 		;
 	}
 
-	@Test
+	@Test // 페이징 처리
 	public void pagingUser2Test() throws Exception {
 		mockMvc.perform(get("/user/pagingUser").param("page", "2")).andExpect(view().name("user/pagingUser"))
 				.andExpect(status().isOk()).andExpect(model().attributeExists("userList"))
@@ -42,7 +45,7 @@ public class UserControllerTest extends WebTestConfig {
 				.andDo(print());
 	}
 
-	@Test // 상세보기 테스트
+	@Test // 사용자 상세보기 테스트
 	public void userFormTest() throws Exception {
 		mockMvc.perform(get("/user/userForm").param("userid", "sally")).andExpect(view().name("user/userForm"))
 				.andExpect(status().isOk()).andExpect(model().attributeExists("user")).andDo(print());
@@ -56,8 +59,22 @@ public class UserControllerTest extends WebTestConfig {
 
 	@Test // 사용자 수정 POST 테스트
 	public void userModifyPostTest() throws Exception {
-		mockMvc.perform(post("/user/userModify").param("user", "brown")).andExpect(view().name("user/userForm"))
-				.andExpect(status().isOk()).andExpect(model().attributeExists("user")).andDo(print());
+		ClassPathResource resource = new ClassPathResource("kr/or/ddit/upload/test.jpg");
+		MockMultipartFile profile = new MockMultipartFile("profile", "test.jpg", "image/jpg", resource.getInputStream());
+		
+		//mockMvc.perform(post("/user/userModify").param("userid", "brown").param("pass", "brownPass")).andExpect(view().name("user/userForm"))
+		//		.andExpect(status().isOk()).andExpect(model().attributeExists("user")).andDo(print());
+		
+		mockMvc.perform(fileUpload("/user/userModify").file(profile).param("userid", "brown").param("pass", "brownPass")
+				.param("userid", "brown")
+				.param("usernm", "브라운")
+				.param("reg_dt2", "2020.01.01")
+				.param("alias", "곰")
+				.param("addr1", "addr1")
+				.param("addr2", "addr2")
+				.param("zipcode", "zipcode")
+				).andExpect(view().name("user/userModify"))
+		.andExpect(status().isOk()).andExpect(model().attributeExists("user")).andDo(print());
 	}
 
 }
