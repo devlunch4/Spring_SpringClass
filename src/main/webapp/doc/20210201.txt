@@ -112,13 +112,14 @@ LoginController : 로그인 요청 처리 메소드 개발
 	servlet에서 html 응답 생성 : writer 객체
 	파일 다운로드 응답 : OutputStream
 	사용자 요청 정보(파일 업로드) : InputStream
-	
+
+!!!!!
 5. RedirectAttributes : 리다이렉트 페이지에 1회성 속성 전달.
 				request.setAttribute("msg","에러발생");
 				responce.sendRedirect("리다이렉트.jsp");
 				
 				리다이렉트.jsp에서 msg 속성 조회???
-
+!!!!!
 
 
 스프링 컨트롤러 메소드 반환 타입
@@ -137,9 +138,9 @@ LoginController : 로그인 요청 처리 메소드 개발
 3. 파라미터 제한
 	특정 파라미터의 값이 정해진 값과 일치 할때만 해당 요청을 처리.
 	params ={"userid=brown"}
-	
-ajx>>
-	
+
+
+AJAX : 	
 4. 요청 content-type 제한 : consumes
 		comsumes = application/json ==> 요청을 json 문자열로 보냈을때만 처리
 
@@ -148,6 +149,10 @@ ajx>>
 6. 특정 헤더 제한
  : 
 		headers="Context-Type=text/plain";
+
+
+
+
 
 	
 SPRING- mybatis 연동
@@ -159,18 +164,16 @@ spring
 	sqlSessionTemplate ==> SqlSessionFactioryBean ==> 1.설정파일(매퍼파일),2.Datasource
 	
 	
-userServiceImple,UserDao
- . 모든 마이그레이션
- . 모든 테스트 코드 작성
+7교시안에 완성(16:20)
+userServiceImpl, userDaoImpl
+ . 모든 메소드 마이그레이션
+ . 모든 메소드 테스트 코드 작성		
  
- src/test/java 소스폴터 선택후 전체 테스트 실행
- 
- 
- 
- 
- 
- 
- 
+src/test/java 소스폴더 선택후 전체 테스트 실행
+ . 에러 발생하는 테스트 코드 설정 수정하여 전체가 정상적으로 실행 되도록 변경
+ **** 수업시간에 배운 내용으로 처리 불가한 테스트
+ 		1. java 설정으로 이루어진 테스트 코드
+ 		2. WebTestConfig, ModelTestConfig
  
  
  

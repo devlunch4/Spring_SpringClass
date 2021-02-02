@@ -19,6 +19,16 @@ public class UserVo {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reg_dt;
+	//private String reg_dt;
+
+//	public void setReg_dt(String reg_dt) {
+//		this.reg_dt = reg_dt;
+//	}
+//
+//	public String getReg_dt() {
+//		return reg_dt;
+//	}
+
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date hire_dt;
 	// 1,000

@@ -57,7 +57,7 @@
 							</table>
 						</div>
 						<a class="btn btn-default pull-right"
-							href="${cp }/userRegist">사용자 등록</a>
+							href="${cp }/user/userRegist">사용자 등록</a>
 						<div class="text-center">
 							<!-- 							<ul class="pagination">
 								<li><a href="#">1</a></li>

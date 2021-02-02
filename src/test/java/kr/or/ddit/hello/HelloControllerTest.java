@@ -67,4 +67,11 @@ public class HelloControllerTest extends WebTestConfig {
 		assertEquals("brown", userVo.getUserid());
 	}
 
+	@Test
+	public void pathVariableTest() throws Exception {
+		MvcResult mvcResult = mockMvc.perform(get("/hello/path/brown")).andExpect(status().isOk())
+				.andExpect(model().attributeExists("subpath")).andDo(print())
+				.andReturn();
+	}
+
 }

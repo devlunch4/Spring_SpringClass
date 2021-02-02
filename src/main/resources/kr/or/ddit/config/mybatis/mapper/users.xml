@@ -7,7 +7,7 @@
 	<!-- Select 된 컬럼과 resultType에 기술된 클래스의 필드 이름이 동일하면 자동으로 값을 넣어준다. -->
 	<select id="selectAllUser" resultType="userVo">
 		SELECT *
-		FROM users
+		FROM users users ORDER BY userid
 	</select>
 
 
@@ -41,7 +41,7 @@
 	<select id="selectAllUserCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM
-		users
+		users ORDER BY userid
 	</select>
 
 
@@ -50,7 +50,6 @@
 		UPDATE users SET usernm =
 		#{usernm},
 		pass = #{pass},
-		reg_dt = #{reg_dt},
 		alias = #{alias},
 		addr1 =
 		#{addr1},
@@ -60,7 +59,7 @@
 		realfilename= #{realfilename}
 		WHERE userid = #{userid}
 	</update>
-
+<!-- 		reg_dt = #{reg_dt}, -->
 
 	<!-- 사용자 추가 -->
 	<insert id="insertUser" parameterType="userVo">

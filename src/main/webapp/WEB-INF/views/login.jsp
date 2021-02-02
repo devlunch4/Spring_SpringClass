@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +15,34 @@
 <%@ include file="/WEB-INF/views/common/common_lib.jsp"%>
 <!-- Custom styles for this template -->
 <link href="${cp }/css/signin.css" rel="stylesheet">
+
+
+
 <script
 	src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 <script type="text/javascript">
 	//문서 로딩이 완료되고나서 실행되는 코드
 	//remember check 함수
 	$(function() {
+		
+		//3번
+		<c:if test="${msg != null }">
+		alert("${msg }" + "ra");
+		<c:remove var="msg"/>
+		</c:if>
+		
+		//2번
+/* 		<c:if test="${msg != null }">
+		alert("${msg }" + "c:remove");
+		<c:remove var="msg"/>
+		</c:if> */
+		
+		//1번
+/* 		if("${msg}" != ""){
+			alert("${msg}" + "c:remove");
+			<c:remove var="msg" />
+		} */
+		
 		//userid rememberme 쿠키를 확인하여 존재할 경우 값설정, 체크
 		if (Cookies.get("userid") != undefined) {
 			$("#userid").val(Cookies.get("userid"));
@@ -48,14 +71,14 @@
 </head>
 <body>
 	<div class="container">
-		
+
 
 		<form class="form-signin" id="frm" action="${cp }/login/process"
 			method="post">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<label for="userid" class="sr-only">userid</label> <input type="text"
 				name="userid" id="userid" class="form-control" placeholder="사용자 계정"
-				required autofocus > <label for="inputPassword"
+				required autofocus> <label for="inputPassword"
 				class="sr-only">Password</label> <input type="password" name="pass"
 				value="sallyPass" id="inputPassword" class="form-control"
 				placeholder="Password" required>

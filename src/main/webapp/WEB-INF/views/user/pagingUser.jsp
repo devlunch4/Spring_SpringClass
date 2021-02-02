@@ -42,7 +42,7 @@
 </head>
 
 <body>
-	<form id="frm" action="${cp }/user">
+	<form id="frm" action="/user/userForm">
 		<input type="hidden" id="userid" name="userid" value="">
 	</form>
 	<!-- 헤더부분 include -->
@@ -79,7 +79,7 @@
 						</div>
 
 						<a class="btn btn-default pull-right"
-							href="${cp }/userRegist">사용자 등록</a>
+							href="${cp }/user/userRegist">사용자 등록</a>
 						<div class="text-center">
 						
 						

@@ -11,7 +11,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">JSP/SPRING <c:if
+			<a class="navbar-brand" href="#">SPRING <c:if
 					test="${S_USER.userid != null }">   ${S_USER.userid }[${S_USER.usernm }]</c:if></a>
 
 		</div>
