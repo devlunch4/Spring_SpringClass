@@ -7,14 +7,14 @@ public class PageVo {
 	public PageVo() {
 	}
 
-	public PageVo (int page, int pageSize) {
+	public PageVo(int page, int pageSize) {
 		this.page = page;
 		this.pageSize = pageSize;
 	}
-	
 
+	// jpa --> page:0 jpa의 경우 0부터 사용하게 된다.
 	public int getPage() {
-		return page;
+		return page == 0 ? 1 : page;
 	}
 
 	public void setPage(int page) {
@@ -22,12 +22,16 @@ public class PageVo {
 	}
 
 	public int getPageSize() {
-		return pageSize;
+		return pageSize == 0 ? 5 : pageSize;
 	}
 
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 
-}
+	@Override
+	public String toString() {
+		return "PageVo [page=" + page + ", pageSize=" + pageSize + "]";
+	}
 
+}

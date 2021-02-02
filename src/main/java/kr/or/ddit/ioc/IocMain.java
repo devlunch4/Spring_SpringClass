@@ -24,7 +24,7 @@ public class IocMain {
 
 		// 1번에 해당
 		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/kr/or/ddit/ioc/ioc.xml");
-
+		logger.debug("context : {}", context);
 		// 2번에 해당
 		// UserDao userDao = new UserDaoImpl();
 		UserDao userDao = (UserDao) context.getBean("userDao");

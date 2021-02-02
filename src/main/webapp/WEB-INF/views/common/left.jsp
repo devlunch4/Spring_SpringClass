@@ -7,7 +7,7 @@
 			class="sr-only">(current)</span></a></li>
 	<li class="active"><a href="${cp } /user/allUser">전체사용자</a></li>
 	<li class="active"><a
-		href="${cp }/pagingUser">전체사용자페이징리스트</a></li>
+		href="${cp }/user/pagingUser">전체사용자페이징리스트</a></li>
 
 	<%--http://localhost/pagingUser?page=1&pageSize=5 요청시
 pagingUser.jsp페엇 페이지에 해당하는 사용자 5명만 출력 되도록 개발

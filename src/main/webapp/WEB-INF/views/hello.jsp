@@ -9,6 +9,7 @@
 <body>
 hello.jsp<br>
 
+rangers : ${rangers } <br>
 userVo : ${userVo } <br>
 userVo(request) : ${userVo } <br>
 

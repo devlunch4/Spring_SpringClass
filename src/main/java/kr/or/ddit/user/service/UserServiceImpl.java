@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.PageVo;
@@ -50,13 +49,33 @@ public class UserServiceImpl implements UserService {
 	// 페이지 처리
 	@Override
 	public Map<String, Object> selectPagingUser(PageVo pageVo) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<UserVo> userList = userDao.selectPagingUser(pageVo);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		resultMap.put("pageVo", pageVo);
+		resultMap.put("userList", userDao.selectPagingUser(pageVo));
+		// resultMap.put("userCnt", userDao.selectAllUserCnt());
 		int userCnt = userDao.selectAllUserCnt();
-		map.put("userList", userList);
-		map.put("userCnt", userCnt);
-		return map;
+
+		resultMap.put("pagination", (int) Math.ceil((double) userCnt / pageVo.getPageSize()));
+		// "(int)Math.ceil( ((Integer)resultMap.get(""userCnt"")).doubleValue() /
+		// pageVo.getPageSize()) );
+		// ,
+		// (int)Math.ceil( Double.valueOf(resultMap.get(""userCnt"").toString())
+		// /pageVo.getPageSize() )"
+
+		return resultMap;
 	}
+
+// Original	
+//	@Override
+//	public Map<String, Object> selectPagingUser(PageVo pageVo) {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		List<UserVo> userList = userDao.selectPagingUser(pageVo);
+//		int userCnt = userDao.selectAllUserCnt();
+//		map.put("userList", userList);
+//		map.put("userCnt", userCnt);
+//		return map;
+//	}
 
 	// 사용자 정보 수정
 	@Override
