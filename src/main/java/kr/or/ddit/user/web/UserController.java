@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -110,7 +112,7 @@ public class UserController {
 		}
 		// file 컬럼 2부분 설정 / 날짜 부분 재설정
 		userVo.setFilename(originalFileName);
-		userVo.setRealfilename(realFileName);
+		userVo.setRealfilename("d:\\upload\\" + realFileName);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 		Date parseDate = null;
 		try {
@@ -159,7 +161,7 @@ public class UserController {
 		logger.debug("INN UserController.userRegistPost()");
 
 		// 검증클래스 호출 및 검증 클래스의 검증로직 실행
-		//new UserVoValidator().validate(userVo, result);
+		// new UserVoValidator().validate(userVo, result);
 
 		if (result.hasErrors()) {
 			logger.debug("result.hasErrors() at userRegistPost()");
@@ -188,13 +190,13 @@ public class UserController {
 		userVo.setRealfilename(realFileName);
 		userVo.setReg_dt(new Date());
 		// 등록 sql 시행
-		
+
 		int insertCnt = userService.insertUser(userVo);
 		if (insertCnt == 1) {
 			// 성공시 파일 저장 및 상세정보로 이동
 			// 성공시 페이징 페이지로 이동
 			logger.debug("사용자 정보 등록 성공");
-			//model.addAttribute("user", userVo);
+			// model.addAttribute("user", userVo);
 			return "redirect:/user/pagingUser";
 		} else {
 			// 실패시 수정 페이지로 이동
@@ -209,6 +211,21 @@ public class UserController {
 	public String userRegistGet() {
 		logger.debug("INN UserController.userRegistGet()");
 		return "user/userRegist";
+	}
+
+	
+	//localhost:8081/user/excelDownload
+	// 사용자 전체 엑셀 다운로드
+	@RequestMapping("excelDownload")
+	public String excelDownload(Model model) {
+		List<String> header = new ArrayList<String>();
+		header.add("사용자 아이디");
+		header.add("사용자 이름");
+		header.add("사용자 별명");
+
+		model.addAttribute("header", header);
+		model.addAttribute("data", userService.selectAllUser());
+		return "userExcelDownloadView";
 	}
 
 }

@@ -20,10 +20,8 @@
 
 <%--common_lib.jsp == 공통 라이브러리 --%>
 <%@ include file="/WEB-INF/views/common/common_lib.jsp"%>
-<link href="${cp }/css/dashboard.css"
-	rel="stylesheet">
-<link href="${cp }/css/blog.css"
-	rel="stylesheet">
+<link href="${cp }/css/dashboard.css" rel="stylesheet">
+<link href="${cp }/css/blog.css" rel="stylesheet">
 
 <script type="text/javascript">
 	//문서 로딩이 완료되고 나서 실행되는 영역
@@ -71,7 +69,8 @@
 										<td>loopIndex ${loop.index} ${user.userid }</td>
 										<td>${user.usernm }</td>
 										<td>${user.pass }</td>
-										<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd"/></td>
+										<td><fmt:formatDate value="${user.reg_dt }"
+												pattern="yyyy.MM.dd" /></td>
 										<td>${user.alias }</td>
 									</tr>
 								</c:forEach>
@@ -79,10 +78,12 @@
 						</div>
 
 						<a class="btn btn-default pull-right"
-							href="${cp }/user/userRegist">사용자 등록</a>
+							href="${cp }/user/userRegist">사용자 등록</a> <a
+							class="btn btn-default pull-right"
+							href="${cp }/user/excelDownload">전체 사용자 엑셀 다운로드</a>
 						<div class="text-center">
-						
-						
+
+
 							<ul class="pagination">
 								<%--pagination 값이 4이므로 1부터 4까지 4번 반복된다
 							전체 사용자수 16명
@@ -95,12 +96,12 @@
 								<c:forEach begin="1" end="${pagination }" var="i">
 									<c:choose>
 										<c:when test="${pageVo.page == i }">
-										
-										
+
+
 											<li class="active"><span>${i }</span></li>
-											
-											
-											
+
+
+
 										</c:when>
 										<c:otherwise>
 											<li><a

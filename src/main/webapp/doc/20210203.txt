@@ -95,3 +95,34 @@ child 부분에 둔다.
 
 
 
+///
+
+UPDATE users SET filename='test.jpg', realfilename='d:\\upload\test.jpg'
+WHERE userid = 'sally';
+commit;
+
+///
+
+localhost/file/fileDownloadview?userid=sally
+
+
+엑셀 만드는 법
+1.jsp xls 만 가능 >> 실제론 html xlsx 불가
+1-1/ xlsx 를 사용하려면 poi를 사용해야함
+2. java api 가능
+
+
+ExeclDownloadView
+1. ajax
+2. excel down (필수) 
+3. tomcat 9 ver.
+4. 사내 시스템 구현
+
+
+//
+SELECT column_name,b.comments
+FROM USER_TAB_COMMENTS a, USER_COL_COMMENTS b
+WHERE a.TABLE_NAME = b.TABLE_NAME
+AND a.COLUMN_NAME = b.COLUMN_NAME
+AND a.TABLE_NAME = 'USERS'
+ORDER BY
