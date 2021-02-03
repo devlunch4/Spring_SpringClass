@@ -64,7 +64,7 @@
 					<div class="form-group">
 						<label for="userId" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
-							<img src="${cp }/profile/${user.userid }.png" /> <input
+							<img src="${cp }/user/profile/${user.userid }.png" /> <input
 								type="file" class="form-control" id="profile" name="profile">
 						</div>
 					</div>

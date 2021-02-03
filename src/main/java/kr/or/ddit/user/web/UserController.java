@@ -1,6 +1,7 @@
 package kr.or.ddit.user.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -26,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
-import kr.or.ddit.validator.UserVoValidator;
 
 @RequestMapping("user")
 @Controller
@@ -95,24 +98,28 @@ public class UserController {
 		logger.debug("수정할 userid: {}", userVo.getUserid());
 		// 파일 세팅 설정
 		String originalFileName = "";
-		String fileExtension = "";
 		String realFileName = "";
 		// profile.isEmpty()
 		if (profile.getSize() > 0) {
 			originalFileName = profile.getOriginalFilename();
-			int pos = originalFileName.lastIndexOf(".");
-			fileExtension = originalFileName.substring(pos + 1);
-			realFileName = UUID.randomUUID().toString() + fileExtension;
+			realFileName = UUID.randomUUID().toString() + "."
+					+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
 			try {
 				// 저장위치 지정 및 저장
-				profile.transferTo(new File("d:\\upload\\" + profile.getOriginalFilename()));
+				profile.transferTo(new File("d:\\upload\\" + realFileName));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
-		// file 컬럼 2부분 설정 / 날짜 부분 재설정
+
 		userVo.setFilename(originalFileName);
-		userVo.setRealfilename("d:\\upload\\" + realFileName);
+		if (realFileName.equals("")) {
+			userVo.setRealfilename(realFileName);
+		} else {
+			userVo.setRealfilename("d:\\upload\\" + realFileName);
+		}
+		// file 컬럼 2부분 설정 / 날짜 부분 재설정
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 		Date parseDate = null;
 		try {
@@ -121,13 +128,14 @@ public class UserController {
 			e.printStackTrace();
 		}
 		userVo.setReg_dt(parseDate);
+
 		// 사용자 수정 sql 시행
 		model.addAttribute("user", userVo);
 		int updateCnt = userService.modifyUser(userVo);
 		if (updateCnt == 1) {
 			// 성공시 파일 저장 및 상세정보로 이동
 			logger.debug("사용자 정보 수정 성공");
-			return "redirect:/user/userForm";
+			return "/user/userForm";
 		} else {
 			// 실패시 수정 페이지로 이동
 			logger.debug("사용자 정보 수정 실패");
@@ -170,27 +178,30 @@ public class UserController {
 
 		// 파일 세팅 설정
 		String originalFileName = "";
-		String fileExtension = "";
 		String realFileName = "";
 		// profile.isEmpty()
 		if (profile.getSize() > 0) {
 			originalFileName = profile.getOriginalFilename();
-			int pos = originalFileName.lastIndexOf(".");
-			fileExtension = originalFileName.substring(pos + 1);
-			realFileName = UUID.randomUUID().toString() + fileExtension;
+			realFileName = UUID.randomUUID().toString() + "."
+					+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+
 			try {
 				// 저장위치 지정 및 저장
-				profile.transferTo(new File("d:\\upload\\" + profile.getOriginalFilename()));
+				profile.transferTo(new File("d:\\upload\\" + realFileName));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
+
 		// 신규 등록에 따른 파일/날짜 컬럼 값 설정
 		userVo.setFilename(originalFileName);
-		userVo.setRealfilename(realFileName);
+		if (realFileName.equals("")) {
+			userVo.setRealfilename(realFileName);
+		} else {
+			userVo.setRealfilename("d:\\upload\\" + realFileName);
+		}
 		userVo.setReg_dt(new Date());
 		// 등록 sql 시행
-
 		int insertCnt = userService.insertUser(userVo);
 		if (insertCnt == 1) {
 			// 성공시 파일 저장 및 상세정보로 이동
@@ -213,8 +224,7 @@ public class UserController {
 		return "user/userRegist";
 	}
 
-	
-	//localhost:8081/user/excelDownload
+	// localhost:8081/user/excelDownload
 	// 사용자 전체 엑셀 다운로드
 	@RequestMapping("excelDownload")
 	public String excelDownload(Model model) {
@@ -228,4 +238,109 @@ public class UserController {
 		return "userExcelDownloadView";
 	}
 
+	@RequestMapping("pagingUserTiles") // 페이징 처리 Tiles
+	public String pagingUserTails(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "5") int pageSize, Model model) {
+		logger.debug("( Tiles page:{}, pageSize:{}", page, pageSize);
+		// logger.debug("(price:{}", price); // price 삭제
+		PageVo pageVo = new PageVo(page, pageSize);
+		model.addAllAttributes(userService.selectPagingUser(pageVo));
+		return "tiles.user.pagingUser";
+	}
+
+	@RequestMapping("allUserTiles") // 모든 사용자 정보 조회 Tiles
+	public String allUserTiles(Model model) {
+		logger.debug("INN Tiles UserController allUser() :");
+		// 객체 모델에 넣기
+		model.addAttribute("userList", userService.selectAllUser());
+		return "tiles.user.allUser";
+	}
+
+	@RequestMapping("userFormTiles") // 사용자 상세보기 Tiles
+	public String userFormTiles(Model model, String userid) {
+		logger.debug("INN Tiles UserController pagingUser() :");
+		logger.debug("클릭된 userid값 : {}", userid);
+		UserVo user = userService.selectUser(userid);
+		model.addAttribute("user", user);
+		return "tiles.user.userForm";
+	}
+
+	// localhost/user/profile
+	@RequestMapping("profile")
+	public void profile(HttpServletResponse resp, String userid, HttpServletRequest req) {
+		resp.setContentType("image");
+
+		// userid 파라미터를 이용하여
+		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
+		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+
+		UserVo userVo = userService.selectUser(userid);
+
+		String path = "";
+		if (userVo.getRealfilename() == null) {
+			path = req.getServletContext().getRealPath("/image/unknown.png");
+		} else {
+			path = userVo.getRealfilename();
+		}
+
+		logger.debug("path : {} ", path);
+
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			ServletOutputStream sos = resp.getOutputStream();
+
+			byte[] buff = new byte[512];
+
+			while (fis.read(buff) != -1) {
+				sos.write(buff);
+			}
+
+			fis.close();
+			sos.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping("profileDownload")
+	public void profileDownload(String userid, HttpServletRequest req, HttpServletResponse resp) {
+
+		UserVo userVo = userService.selectUser(userid);
+
+		String path = "";
+		String filename = "";
+		if (userVo.getRealfilename() == null) {
+			path = req.getServletContext().getRealPath("/image/unknown.png");
+			filename = "unknown.png";
+		} else {
+			path = userVo.getRealfilename();
+			filename = userVo.getFilename();
+		}
+
+		resp.setHeader("Content-Disposition", "attachment; filename=" + filename);
+
+		// userid 파라미터를 이용하여
+		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
+		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+
+		logger.debug("path : {} ", path);
+
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			ServletOutputStream sos = resp.getOutputStream();
+
+			byte[] buff = new byte[512];
+
+			while (fis.read(buff) != -1) {
+				sos.write(buff);
+			}
+
+			fis.close();
+			sos.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -2,23 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="../../favicon.ico">
 
-<title>UserFrom</title>
-
-<%--common_lib.jsp == 공통 라이브러리 --%>
-<%@ include file="/WEB-INF/views/common/common_lib.jsp"%>
-<link href="${cp }/css/dashboard.css" rel="stylesheet">
-<link href="${cp }/css/blog.css" rel="stylesheet">
 <script type="text/javascript">
 	//문서 로딩이 완료 되었을때
 	//사용자 수정 : method : get, action = /userModify
@@ -38,21 +22,7 @@
 		});
 	});
 </script>
-</head>
 
-<body>
-	<!-- 헤더부분 include -->
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-	<div class="col-sm-3 col-md-2 sidebar">
-		<!-- left 프레임 부분 include 위아래는 그리드 개념으로 유지보수시 확인을 위해 남김 -->
-		<%@ include file="/WEB-INF/views/common/left.jsp"%>
-	</div>
-
-	<div class="container-fluid">
-		<%-- <%
-		UserVo user = (UserVo) request.getAttribute("user");
-		%> --%>
 		<div class="row">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h2 class="sub-header">사용자 상세 조회</h2>
@@ -139,6 +109,4 @@
 				</form>
 			</div>
 		</div>
-	</div>
-</body>
-</html>
+

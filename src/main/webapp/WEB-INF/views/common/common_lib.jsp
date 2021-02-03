@@ -5,7 +5,9 @@
 <!-- Bootstrap core CSS -->
 <link href="${cp }/css/bootstrap.min.css"
 	rel="stylesheet">
-
+	
+<link href="${cp }/css/dashboard.css" rel="stylesheet">
+<link href="${cp }/css/blog.css" rel="stylesheet">
 
 
 <!-- google jquery -->
@@ -17,4 +19,6 @@
 
 <!--  js : jquery -->
 <script src="${cp }/js/jquery-3.5.1.min.js"></script>
+
+
 

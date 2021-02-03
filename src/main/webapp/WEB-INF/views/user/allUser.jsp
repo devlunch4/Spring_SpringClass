@@ -17,13 +17,29 @@
 <title>allUser</title>
 <%--common_lib.jsp == 공통 라이브러리 --%>
 <%@ include file="/WEB-INF/views/common/common_lib.jsp"%>
-<link href="${cp }/css/dashboard.css"
-	rel="stylesheet">
-<link href="${cp }/css/blog.css"
-	rel="stylesheet">
+<link href="${cp }/css/dashboard.css" rel="stylesheet">
+<link href="${cp }/css/blog.css" rel="stylesheet">
+<script type="text/javascript">
+	//문서 로딩이 완료되고 나서 실행되는 영역
+	$(function() {
+		$(".user").on("click", function() {
+			//this : 클릭 이벤트가 발생한 element
+			//data-속성명 >> data-userid >> $(this).data("userid"),
+			//속성명은 대소문자를 무시하고 소문자로 인식
+			//console.log($(this).data("userid"))
+			var userid = $(this).data("userid");
+			$("#userid").val(userid);
+			$("#frm").submit();
+		});
+	});
+</script>
+
 </head>
 
 <body>
+	<form id="frm" action="/user/userForm">
+		<input type="hidden" id="userid" name="userid" value="">
+	</form>
 	<!-- 헤더부분 include -->
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="container-fluid">
@@ -44,13 +60,14 @@
 									<th>등록일시</th>
 									<th>사용자 별명</th>
 								</tr>
-								
-								<c:forEach items="${userList }" var="user" >
-									<tr>
+
+								<c:forEach items="${userList }" var="user">
+									<tr class="user" data-userid="${user.userid }">
 										<td>${user.userid }</td>
 										<td>${user.usernm }</td>
 										<td>${user.pass }</td>
-										<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd"/></td>
+										<td><fmt:formatDate value="${user.reg_dt }"
+												pattern="yyyy.MM.dd" /></td>
 										<td>${user.alias }</td>
 									</tr>
 								</c:forEach>
