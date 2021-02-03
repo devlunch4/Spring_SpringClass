@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.validator.UserVoValidator;
 
 @RequestMapping("user")
 @Controller
@@ -122,7 +124,7 @@ public class UserController {
 		if (updateCnt == 1) {
 			// 성공시 파일 저장 및 상세정보로 이동
 			logger.debug("사용자 정보 수정 성공");
-			return "user/userForm";
+			return "redirect:/user/userForm";
 		} else {
 			// 실패시 수정 페이지로 이동
 			logger.debug("사용자 정보 수정 실패");
@@ -150,9 +152,19 @@ public class UserController {
 	}
 
 	// 사용자 신규 등록 POST
+	// BindingResult 객체는 command 객체 바로 뒤에 기술해야한다.
 	@RequestMapping(path = "userRegist", method = { RequestMethod.POST })
-	public String userRegistPost(UserVo userVo, MultipartFile profile, Model model) {
+	public String userRegistPost(UserVo userVo, BindingResult result, MultipartFile profile, Model model) {
 		logger.debug("INN UserController.userRegistPost()");
+
+		// 검증클래스 호출 및 검증 클래스의 검증로직 실행
+		new UserVoValidator().validate(userVo, result);
+
+		if (result.hasErrors()) {
+			logger.debug("result.hasErrors() at userRegistPost()");
+			return "user/userRegist";
+		}
+
 		// 파일 세팅 설정
 		String originalFileName = "";
 		String fileExtension = "";
@@ -175,12 +187,14 @@ public class UserController {
 		userVo.setRealfilename(realFileName);
 		userVo.setReg_dt(new Date());
 		// 등록 sql 시행
-		int insertUser = userService.insertUser(userVo);
-		if (insertUser == 1) {
+		
+		int insertCnt = userService.insertUser(userVo);
+		if (insertCnt == 1) {
 			// 성공시 파일 저장 및 상세정보로 이동
+			// 성공시 페이징 페이지로 이동
 			logger.debug("사용자 정보 등록 성공");
-			model.addAttribute("user", userVo);
-			return "user/userForm";
+			//model.addAttribute("user", userVo);
+			return "redirect:/user/pagingUser";
 		} else {
 			// 실패시 수정 페이지로 이동
 			logger.debug("사용자 정보 등록 실패");
