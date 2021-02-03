@@ -151,3 +151,8 @@ file pic
 -AfterCompletion
 
 !!!interceptor /filter 차이점
+Filter와 Interceptor는 실행되는 시점이 다르다.
+Filter는 Web Application에 등록을 하고, Interceptor는 Spring의 Context에 등록을 한다.
+
+Filter는 Servlet에서 처리하기 전후를 다룰 수 있다.
+Interceptor는 Handler를 실행하기전(preHandle), Handler를 실행한 후(postHandle), view를 렌더링한 후(afterCompletion) 등, Servlet내에서도 메서드에 따라 실행 시점을 다르게 가져간다.

@@ -56,15 +56,16 @@ public class ExcelDownloadView extends AbstractView {
 //			cell = row.createCell(colnum++);
 //			cell.setCellValue(d.getAlias());
 //		}
-		
-		//강사 방법
+
+		// 강사 방법
 		for (UserVo d : data) {
 			colnum = 0;
-			sheet.createRow(rownum++).createCell(colnum++).setCellValue(d.getUserid());
-			//createCell(colnum++).setCellValue(d.getUsernm());
-			sheet.createRow(rownum).createCell(colnum++).setCellValue(d.getAlias());
+			Row r = sheet.createRow(rownum++);
+			r.createCell(colnum++).setCellValue(d.getUserid());
+			r.createCell(colnum++).setCellValue(d.getUsernm());
+			r.createCell(colnum++).setCellValue(d.getAlias());
 		}
-		
+
 		book.write(response.getOutputStream());
 	}
 }
