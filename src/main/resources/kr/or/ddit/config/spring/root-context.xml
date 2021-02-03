@@ -14,4 +14,18 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
+
+
+	<!-- msg 등록 bean 이름은 정해져있다.(messageSource) -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- error까지 적으면 이하 ko/en/ja 모두 인식 -->
+				<value>classpath:/kr/or/ddit/msg/error/error</value>
+				<value>classpath:/kr/or/ddit/msg/msg/msg</value>
+			</list>
+		</property>
+	</bean>
+
 </beans>

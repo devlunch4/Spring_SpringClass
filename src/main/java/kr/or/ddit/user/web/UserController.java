@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -154,11 +155,11 @@ public class UserController {
 	// 사용자 신규 등록 POST
 	// BindingResult 객체는 command 객체 바로 뒤에 기술해야한다.
 	@RequestMapping(path = "userRegist", method = { RequestMethod.POST })
-	public String userRegistPost(UserVo userVo, BindingResult result, MultipartFile profile, Model model) {
+	public String userRegistPost(@Valid UserVo userVo, BindingResult result, MultipartFile profile, Model model) {
 		logger.debug("INN UserController.userRegistPost()");
 
 		// 검증클래스 호출 및 검증 클래스의 검증로직 실행
-		new UserVoValidator().validate(userVo, result);
+		//new UserVoValidator().validate(userVo, result);
 
 		if (result.hasErrors()) {
 			logger.debug("result.hasErrors() at userRegistPost()");

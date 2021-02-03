@@ -22,6 +22,7 @@ public class UserVoValidator implements Validator {
 
 		// userid 길이가 5글자 이상 (5글자 허용)
 		if (userVo.getUserid().length() < 5) {
+			// 필드,에러코드 >>>
 			errors.rejectValue("userid", "length");
 		}
 

@@ -1,6 +1,8 @@
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +18,7 @@
 
 <%--common_lib.jsp == 공통 라이브러리 --%>
 <%@ include file="/WEB-INF/views/common/common_lib.jsp"%>
-<link href="${cp }/css/dashboard.css"
-	rel="stylesheet">
+<link href="${cp }/css/dashboard.css" rel="stylesheet">
 <link href="${cp }/css/blog.css" rel="stylesheet">
 
 <!-- 주소 입력 부분 다음 API 활용 -->
@@ -27,7 +28,6 @@
 UserVo userVo = (UserVo) request.getAttribute("userVo");
 %>
 <script>
-
 	$(function() {
 
 		//주소 검색 버튼이 클릭 되었을 때 다음주소API 팝업을 연다			
@@ -48,22 +48,23 @@ UserVo userVo = (UserVo) request.getAttribute("userVo");
 </script>
 
 <script type="text/javascript">
-function initData(){
-	$("#userId").val("1234");
-	$("#userNm").val("테스터");
-	$("#userAlias").val("별명");
-	$("#pass").val("1234");
-	$("#reg_dt").val("2021.01.01");
-	$("#addr1").val("테스트주소1");
-	$("#addr2").val("테스트주소2");
-	$("#zipcode").val("123456");
-}
+	function initData() {
+		$("#userId").val("1234");
+		$("#userNm").val("테스터");
+		$("#userAlias").val("tester");
+		$("#pass").val("1234");
+		$("#reg_dt").val("2021.01.01");
+		$("#addr1").val("테스트주소1");
+		$("#addr2").val("테스트주소2");
+		$("#zipcode").val("123456");
+	}
 </script>
 </head>
 
 <body>
 	<!-- 헤더부분 include -->
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 	<div class="col-sm-3 col-md-2 sidebar">
 		<!-- left 프레임 부분 include 위아래는 그리드 개념으로 유지보수시 확인을 위해 남김 -->
 		<%@ include file="/WEB-INF/views/common/left.jsp"%>
@@ -72,18 +73,27 @@ function initData(){
 		<div class="row">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h2 class="sub-header">사용자 등록</h2>
+				SPRING MESSAGE :
+				<spring:message code="LANG" />
+				SPRING MESSAGE :
+				<spring:message code="GREETING" arguments="Brown!!!" />
+				<br>
 				<form class="form-horizontal" role="form"
-					action="${cp }/user/userRegist" method="POST" enctype="multipart/form-data">
+					action="${cp }/user/userRegist" method="POST"
+					enctype="multipart/form-data">
 					<input type="hidden" name="userId" value="" />
-
 					<div class="form-group">
 						<label for="userId" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="userid" name="userid"
 								placeholder="사용자 아이디" value="${param.userid}">
-								<input type="file" class="form-control" name="profile">
+
+							<!-- 사용자 이름 글자수 제한 관련 msg-->
+							<span style="color: red;"> <form:errors
+									path="userVo.userid" />
+							</span> <input type="file" class="form-control" name="profile">
 						</div>
-							
+
 					</div>
 
 					<div class="form-group">
@@ -105,16 +115,16 @@ function initData(){
 					<div class="form-group">
 						<label for="reg_dt" class="col-sm-2 control-label">사용자등록일</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="reg_dt2" name="reg_dt2"
-								placeholder="사용자 등록일" value="${param.reg_dt}" />
+							<input type="text" class="form-control" id="reg_dt2"
+								name="reg_dt2" placeholder="사용자 등록일" value="${param.reg_dt}" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">별명</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="alias"
-								name="alias" placeholder="별명" value="${param.alias}" />
+							<input type="text" class="form-control" id="alias" name="alias"
+								placeholder="별명" value="${param.alias}" />
 						</div>
 					</div>
 
