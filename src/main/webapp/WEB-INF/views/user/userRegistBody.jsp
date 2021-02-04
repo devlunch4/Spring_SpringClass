@@ -148,6 +148,9 @@
 
 <script>
 	$(function() {
+		//select 박스 지정
+		$("select[name=lang]").val("${param.lang}");
+		//변화에 따른 값 페이지 변경
 		$("select[name=lang]").on("change", function() {
 			console.log("select[lang] on change")
 			document.location = "/user/userRegistTiles?lang=" + $(this).val();
