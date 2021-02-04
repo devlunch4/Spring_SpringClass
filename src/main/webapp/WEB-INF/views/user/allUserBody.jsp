@@ -25,7 +25,7 @@
 </form>
 <div class="row">
 	<div class="col-sm-8 blog-main">
-		<h2 class="sub-header">전체 사용자</h2>
+		<h2 class="sub-header">전체 사용자 BODY</h2>
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<tr>
@@ -48,7 +48,7 @@
 				</c:forEach>
 			</table>
 		</div>
-		<a class="btn btn-default pull-right" href="${cp }/user/userRegist">사용자
+		<a class="btn btn-default pull-right" href="${cp }/user/userRegistTiles">사용자
 			등록</a>
 		<div class="text-center">
 			<!-- 							<ul class="pagination">

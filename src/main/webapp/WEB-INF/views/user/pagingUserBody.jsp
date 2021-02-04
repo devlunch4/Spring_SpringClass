@@ -51,7 +51,7 @@
 			</table>
 		</div>
 
-		<a class="btn btn-default pull-right" href="${cp }/user/userRegist">사용자
+		<a class="btn btn-default pull-right" href="${cp }/user/userRegistTiles">사용자
 			등록</a> <a class="btn btn-default pull-right"
 			href="${cp }/user/excelDownload">전체 사용자 엑셀 다운로드</a>
 		<div class="text-center">

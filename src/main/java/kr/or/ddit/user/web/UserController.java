@@ -223,6 +223,13 @@ public class UserController {
 		logger.debug("INN UserController.userRegistGet()");
 		return "user/userRegist";
 	}
+	
+	// 사용자 등록 GET
+	@RequestMapping(path = "userRegistTiles", method = { RequestMethod.GET })
+	public String userRegistTilesGet() {
+		logger.debug("INN UserController.userRegistGet()");
+		return "tiles.user.userRegist";
+	}
 
 	// localhost:8081/user/excelDownload
 	// 사용자 전체 엑셀 다운로드

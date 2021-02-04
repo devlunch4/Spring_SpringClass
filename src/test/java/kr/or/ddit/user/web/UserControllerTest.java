@@ -80,7 +80,7 @@ public class UserControllerTest extends WebTestConfig {
 				.andExpect(status().isOk()).andExpect(model().attributeExists("userList")).andDo(print());
 	}
 
-	//@Test // 사용자 신규 등록 POST 테스트
+	@Test // 사용자 신규 등록 POST 테스트
 	public void userRegistPostTest() throws Exception {
 		 ClassPathResource resource = new
 		 ClassPathResource("kr/or/ddit/upload/test.jpg");
@@ -94,5 +94,9 @@ public class UserControllerTest extends WebTestConfig {
 	}
 
 	// 사용자 등록 GET 테스트
+	@Test
+	public void userRegistGetTest() throws Exception{
+		
+	}
 
 }

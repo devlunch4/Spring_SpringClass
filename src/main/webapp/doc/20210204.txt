@@ -1,0 +1,12 @@
+20210204
+
+
+* CONTEXT->> container
+
+spring.xml - 파일명 : 기본적으로 스프링은 root-context 와 servlet-context가 생성되어지는데 root-context에서 생성되어진 빈들은 모든 컨텍스트에서 공유(사용) 할 수 있고
+
+기타 다른 컨텍스트에서 생성되어진 빈들은 해당 컨텍스트에서만 사용되어질 수 있다.
+
+그리고 root-context 와 servlet-context 에서 겹치는 빈이 생길 경우 servlet-context 의 빈을 사용하게 된다. 
+web application context : 구분할수 있는 것 서블릿에서 사용
+web application context path : 컨테이너를 가르키는 부호
