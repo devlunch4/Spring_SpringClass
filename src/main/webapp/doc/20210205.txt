@@ -1,0 +1,25 @@
+20210205
+
+
+
+1. spring framework를 이용하여
+2. 신규 프로젝트로
+
+3. 단 pom.xml을 수업시간 활용
+4.spring bean configuration 파일은 복사x/신규로 만들기
+	.controller scan 설정을
+	.viewResolver (jsp, json ==> 두개중 하나만 설정하면 된다.)
+
+5. web.xml에 스프링 컨테이너 관련 설정
+	. model x
+	controller == dispatcherServlet ==> 설정파일1개만 추가(4번에서 만든파일)
+	
+==== 스프링 설정 끝.
+
+
+6. 설정된 사항을 이용하여 개발 (business logic)
+7. hello/hello url을 처리하는 controller >> @controller 사용, @RequestMapping
+	.method 설정
+	.jsp 생성 또는 jsonView생성(model)
+	
+====

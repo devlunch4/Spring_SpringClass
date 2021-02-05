@@ -223,7 +223,7 @@ public class UserController {
 		logger.debug("INN UserController.userRegistGet()");
 		return "user/userRegist";
 	}
-	
+
 	// 사용자 등록 GET
 	@RequestMapping(path = "userRegistTiles", method = { RequestMethod.GET })
 	public String userRegistTilesGet() {
@@ -350,4 +350,30 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+//	
+//	@RequestMapping("pagingUserTilesAjax") // 페이징 처리 Tiles
+//	public String pagingUserTailsAjax(@RequestParam(defaultValue = "1") int page,
+//			@RequestParam(defaultValue = "5") int pageSize, Model model) {
+//		logger.debug("( Tiles page:{}, pageSize:{}", page, pageSize);
+//		// logger.debug("(price:{}", price); // price 삭제
+//		PageVo pageVo = new PageVo(page, pageSize);
+//		model.addAllAttributes(userService.selectPagingUser(pageVo));
+//		return "tiles.user.pagingUser";
+//	}
+
+	// 사용자가 리스트가 없는 상태의 화면만 응답으로 생성
+	@RequestMapping("pagingUserAjaxView") // 페이징 처리 ajax /jsp내부
+	public String pagingUserAjax() {
+		return "tiles.user.pagingUserAjax";
+	}
+
+	@RequestMapping("pagingUserAjax") // 페이징 처리 ajax
+	public String paginUserAjax(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "5") int pageSize, Model model) {
+		logger.debug("(page:{}, pageSize:{}", page, pageSize);
+		PageVo pageVo = new PageVo(page, pageSize);
+		model.addAllAttributes(userService.selectPagingUser(pageVo));
+		return "jsonView";
+	}
+
 }
