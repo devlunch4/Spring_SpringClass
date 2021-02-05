@@ -27,12 +27,7 @@
 <c:forEach begin="1" end="${pagination }" var="i">
 	<c:choose>
 		<c:when test="${pageVo.page == i }">
-
-
 			<li class="active"><span>${i }</span></li>
-
-
-
 		</c:when>
 		<c:otherwise>
 			<li><a
