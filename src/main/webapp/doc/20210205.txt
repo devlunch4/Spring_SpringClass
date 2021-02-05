@@ -23,3 +23,7 @@
 	.jsp 생성 또는 jsonView생성(model)
 	
 ====
+----5교시
+ajax ==> json
+ajax ==> xml
+ajax ==> html

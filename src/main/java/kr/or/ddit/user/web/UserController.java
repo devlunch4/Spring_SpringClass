@@ -375,5 +375,15 @@ public class UserController {
 		model.addAllAttributes(userService.selectPagingUser(pageVo));
 		return "jsonView";
 	}
+	
+	@RequestMapping("pagingUserAjaxHtml") // 페이징 처리 ajax
+	public String paginUserAjaxHtml(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "5") int pageSize, Model model) {
+		
+		PageVo pageVo = new PageVo(page, pageSize);
+		model.addAllAttributes(userService.selectPagingUser(pageVo));
+		return "user/pagingUserAjaxHtml";
+		//WEB-INF/views/user/paginUserAjaxHtml.jsp
+	}
 
 }
