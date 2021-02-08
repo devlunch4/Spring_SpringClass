@@ -31,8 +31,8 @@
 	<bean id="transactionManager"
 		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"></bean>
 
-	<batch:job id="rangersJob">
-		<batch:step id="rangersStep">
+	<batch:job id="rangersJob" restartable="TRUE">
+		<batch:step id="rangersStep" allow-start-if-complete="TRUE">
 			<batch:tasklet transaction-manager="">
 				<batch:chunk commit-interval="2" reader="rangerReader"
 					processor="rangerProcessor" writer="rangerWriter"></batch:chunk>

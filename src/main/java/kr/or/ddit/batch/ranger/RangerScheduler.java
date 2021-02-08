@@ -55,6 +55,16 @@ public class RangerScheduler {
 		// JobLauncher.class);
 		// job = context.getBean("rangersJob", Job.class);
 
+		// 위 resource 어노테이션을 지우고 아래 코드 작성후 실행은 되지만 이전에 만든 xml 빈과는 다른 컨터이너이다.
+		// 어노테이션은 안된다면 따로 스캔을 꼭 넣어야 한다. >> 아래 부분
+		// xml 내
+		// <!-- @Resource @Autowired @ Inject 어노페이션을 통해 주입되는 빈을 처리해준다. -->
+		// <!-- <context:annotation-config/> 엘레멘트를 사용할 경우 별도 선언은 필요 없다. -->
+		// <context:annotation-config />
+		// RangerScheduler rangerScheduler = new RangerScheduler();
+		// rangerScheduler.jobLauncher = (JobLauncher)
+		// context.getBean("jobLauncher",JobLauncher.class);
+		// rangerScheduler.job = context.getBean("rangersJob", Job.class);
 	}
 
 }

@@ -35,6 +35,7 @@ public class RangerReader implements ItemReader<String> {
 			logger.debug("Reader: {}", ranger);
 			return ranger;
 		} else {
+			index = 0;
 			return null;
 		}
 	}
