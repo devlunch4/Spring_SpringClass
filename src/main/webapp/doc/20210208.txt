@@ -1,0 +1,86 @@
+20210208
+
+isolation
+격리수준이라는 옵션이다. 트랜잭션에서 일관성이 없는 데이터를 허용하도록 하는 수준을 말하는데 옵션은 다음과 같다.
+READ_UNCOMMITTED (level 0)
+트랜잭션에 처리중인 혹은 아직 커밋되지 않은 데이터를 다른 트랜잭션이 읽는 것을 허용
+어떤 사용자가 A라는 데이터를 B라는 데이터로 변경하는 동안 다른 사용자는 B라는 아직 완료되지 않은(Uncommitted 혹은 Dirty) 데이터 B를 읽을 수 있다.
+Dirty read : 위와 같이 다른 트랜잭션에서 처리하는 작업이 완료되지 않았는데도 다른 트랜잭션에서 볼 수 있는 현상을 dirty read 라고 하며, READ UNCOMMITTED 격리수준에서만 일어나는 현상
+READ_COMMITTED (level 1)
+dirty read 방지 : 트랜잭션이 커밋되어 확정된 데이터만을 읽는 것을 허용
+어떠한 사용자가 A라는 데이터를 B라는 데이터로 변경하는 동안 다른 사용자는 해당 데이터에 접근할 수 없다.
+REPEATABLE_READ (level 2)
+트랜잭션이 완료될 때까지 SELECT 문장이 사용하는 모든 데이터에 shared lock이 걸리므로 다른 사용자는 그 영역에 해당되는 데이터에 대한 수정이 불가능하다.
+선행 트랜잭션이 읽은 데이터는 트랜잭션이 종료될 때까지 후행 트랜잭션이 갱신하거나 삭제하는 것을 불허함으로써 같은 데이터를 두 번 쿼리했을 때 일관성 있는 결과를 리턴함
+SERIALIZABLE (level 3)
+완벽한 읽기 일관성 모드를 제공
+데이터의 일관성 및 동시성을 위해 MVCC(Multi Version Concurrency Control)을 사용하지 않음(MVCC는 다중 사용자 데이터베이스 성능을 위한 기술로 데이터 조회 시 LOCK을 사용하지 않고 데이터의 버전을 관리해 데이터의 일관성 및 동시성을 높이는 기술)
+트랜잭션이 완료될 때까지 SELECT 문장이 사용하는 모든 데이터에 shared lock이 걸리므로 다른 사용자는 그 영역에 해당되는 데이터에 대한 수정 및 입력이 불가능하다.
+
+
+
+
+batch.
+배치.(일괄 처리)
+연속적으로 이어져 진행되는 작업들을 하나으 ㅣ작업단위로 패키징하여 처리하는 행위.
+(주기적으로 실행되는 작업을 의미하기도 함 - 실질적 이 의미는 아니다.)
+
+
+**실무예시 (인사 발령에 의한 보직자 변경시 결재선 자동 변경 배치)
+-기존결재선 삭제(팀장-부장-임원-사장)
+-각 사원의 조직정보를 바탕으로 사원(조직)별 결재라인 계산
+-계산된 결재선 입력(생성)
+**이기종 시스템간 조직/인사 데이터 연동을 위한 데이터 전송 배치
+-마스터 인사 조직 시스템 정보 조회
+-legacy 인사/조직 정보 삭제
+-legacy 시스템 마스터 인사 /조직정보 입력
+
+
+
+
+**. Spring Batch?
+JopRepository : Job 또는 Step를 저장소(DB 등)에서 조회/생성/수정 하는 역할 // 배치실행정보를 저장(db/none)
+JobLauncher : Job를 실행시키는 역할 // 배치 실행을 담당 기반 컴포넌트
+Job : 여러개의 Step를 포함하고 있고, Batch에서 실행이 되는 실행 단위 // 배치처리를 통해 실행하는 애플리케이션
+Step : Job안에서 데이터 읽기/쓰기/가공 등을 하는 실행 단위 //job은 일련의 연속된 Step으로 구성
+Tasklet: step 내 실행되는 작업단위
+item : 특성 리소스 file, db)로 부터 읽어들여 처리하고자 하는 각 레코드
+
+Chunk : 특정 크기를 갖는 아이템 목록, 배치 처리되는 단위 (한건씩 매번 commit >>> 여러건씩 한번에 처리 commit)
+item Reader : 하나의 Step안에서 데이터를 조회하는 역할// 특정 리소스로부터 아이템을 읽어 들이는 컴포넌트
+item Processor :ItemReader를 통해 조회된 데이터를 가공하는 역할// item reader로 읽어 들이 아이템을 가공하는 컴포넌트
+item Writer : ItemProcessor에서 가공된 데이터를 저장하는 역할// item processor로 부터 전달받은 아이템 chunk를 특정 리소스에 저장하는 컴포넌트
+
+JobInstance : job+ jobparameter (잡을 실행할떄 사용할 값)
+JobExecution : jobInstance의 실행정보 (실패후 재 실행시 새로운 jobExecution 생성)
+
+
+
+******단계
+1.dependency 추가
+	3개 >>>
+	Spring Batch Core
+	Spring Batch Infrastructure
+	Spring Batch Test
+	>>3.0.10.RELEASE
+2. ITEM reader/processor/writer 구현
+	reader > itemReader 구현
+	processor > itemProcessor 구현
+	writer > itemWriter 구현
+
+	K==> key
+	V==> Value
+	T==> Type
+	
+	I==> in
+	O==> out
+3.batch/xml 설정
+4.실행프로그램 구현
+완료
+
+*설정
+1.반복실행할 클래스 메소드 구현
+2.scheduler 등록
+3.scheduler-tasks를 통해 scheduled 등록 (실행할 항목, 실행 주기 설정)
+
+
