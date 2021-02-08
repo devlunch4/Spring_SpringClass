@@ -27,6 +27,7 @@
 		<!-- 5초마다표현, * 띄어쓰기 주의해야함 -->
 		<task:scheduled ref="rangerScheduler"
 			method="rangerTask" cron="*/5 * * * * *" />
+			
 	</task:scheduled-tasks>
 
 
