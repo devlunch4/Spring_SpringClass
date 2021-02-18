@@ -6,8 +6,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.test.config.ModelTestConfig;
@@ -22,6 +28,45 @@ public class UserDaoTest extends ModelTestConfig {
 	@Resource(name = "userDao")
 	private UserDao userDao;
 
+	
+	
+	@Resource(name = "dataSource")
+	private DataSource dataSource;
+	
+	@Before
+	public void setup() {
+		
+		//initData.sql을 실행 : 스프링에서 제공하는 ResourceDatabasePopulator
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		
+		//populator 를 통해 실행시킬 sql 파일 지정
+		populator.addScript(new ClassPathResource("kr/or/ddit/config/db/initData.sql"));
+		//populator 를 실행
+		DatabasePopulatorUtils.execute(populator, dataSource);
+
+		
+		//script 가 실행하다가 에러가 발생하면 더이상 진행하지 않고 멈춤
+		populator.setContinueOnError(false);
+		
+		// userDao = new UserDao();
+
+		// 테스트에서 사용할 신규 사용자 추가
+		UserVo userVo = new UserVo("testUser", "테스트사용자", "testUserPass", new Date(), "대덕", "대전 중구 중앙로 76", "4층",
+				"34940", "brown.png", "uuid-generated-filename.png");
+
+		//userDao.insertUser(userVo);
+
+		// 신규 입력 테스트를 위해 테스트 과정에서 입력된 데이터를 삭제
+		userDao.deleteUser("ddit_n");
+
+	}
+
+	@After
+	public void tearDodwn() {
+		userDao.deleteUser("testUser");
+	}
+	
+	
 	@Test // 사용자 아이디를 이용하여 특정 사용자 정보 조회
 	public void getUserTest() {
 		/*** Given ***/
@@ -59,7 +104,7 @@ public class UserDaoTest extends ModelTestConfig {
 		List<UserVo> userList = userDao.selectAllUser();
 
 		/*** Then ***/
-		assertEquals(16, userList.size());
+		assertEquals(17, userList.size());
 	}
 
 	// 페이지 처리
@@ -85,7 +130,7 @@ public class UserDaoTest extends ModelTestConfig {
 		/*** When ***/
 		int userCnt = userDao.selectAllUserCnt();
 		/*** Then ***/
-		assertEquals(16, userCnt);
+		assertEquals(17, userCnt);
 
 	}
 
@@ -93,7 +138,7 @@ public class UserDaoTest extends ModelTestConfig {
 	@Test
 	public void modifyUserTest() {
 		/*** Given ***/
-		UserVo userVo = new UserVo("1234", "테스터", "testpass", new Date(), "테스터별명", "주소11", "주소22", "3", "testfilename",
+		UserVo userVo = new UserVo("testUser", "테스터", "testpass", new Date(), "테스터별명", "주소11", "주소22", "3", "testfilename",
 				"testrealfilename");
 		/*** When ***/
 		int updateCunt = userDao.modifyUser(userVo);
@@ -106,7 +151,7 @@ public class UserDaoTest extends ModelTestConfig {
 	@Test
 	public void insertUserTest() {
 		/*** Given ***/
-		UserVo userVo = new UserVo("testUser", "테스터", "testpass", new Date(), "테스터별명", "주소11", "주소22", "3",
+		UserVo userVo = new UserVo("testUser2", "테스터", "testpass", new Date(), "테스터별명", "주소11", "주소22", "3",
 				"testfilename", "testrealfilename");
 		/*** When ***/
 		int insertUser = userDao.insertUser(userVo);
